@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🎨 Formateando y validando archivos modificados..."
+npx lint-staged
+
+echo "🔍 Verificando tipos TypeScript..."
+npx tsc --noEmit

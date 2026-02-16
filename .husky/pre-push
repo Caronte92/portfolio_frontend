@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🔍 Ejecutando ESLint en todo el proyecto..."
+npm run lint
+
+echo "🏗️  Verificando build completo..."
+export REACT_APP_VERSION=local-local && npm run build
