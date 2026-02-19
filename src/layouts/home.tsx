@@ -3,7 +3,6 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import '@/styles/globals.css';
 import styles from './page.module.css';
 
 function _Home() {
