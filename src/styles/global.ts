@@ -19,8 +19,6 @@ export const GlobalStyle = createGlobalStyle`
   /* 3. Typographic tweaks */
   html {
     text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    text-size-adjust: 100%;
   }
 
   /* 4. Body defaults — merged with global body styles */

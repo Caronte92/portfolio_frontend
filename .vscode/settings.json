@@ -1,0 +1,13 @@
+{
+  "stylelint.enable": true,
+  "stylelint.validate": ["css", "postcss", "typescript", "typescriptreact"],
+  "stylelint.snippet": ["css", "postcss", "typescript", "typescriptreact"],
+  "stylelint.config": null,
+  "stylelint.configFile": ".stylelintrc.json",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
+}
