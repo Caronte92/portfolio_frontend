@@ -12,22 +12,22 @@ const excludedPaths = [
   '/static/',
 ];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   if (excludedPaths.some((path) => pathname.startsWith(path))) {
     return NextResponse.next();
   }
 
-  for (const middleware of activatedMiddleware) {
-    if (middleware.matcher) {
-      const regex = new RegExp(middleware.matcher);
+  for (const mw of activatedMiddleware) {
+    if (mw.matcher) {
+      const regex = new RegExp(mw.matcher);
       if (!regex.test(pathname)) {
         continue;
       }
     }
 
-    const response = await middleware.middleware(request);
+    const response = await mw.middleware(request);
     if (response) {
       return response;
     }
