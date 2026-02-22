@@ -6,3 +6,6 @@ npx lint-staged
 
 echo "🔍 Verificando tipos TypeScript..."
 npx tsc --noEmit
+
+echo "🩺 Ejecutando react-doctor..."
+npx -y react-doctor@latest . --verbose
