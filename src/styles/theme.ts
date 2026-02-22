@@ -48,12 +48,35 @@ interface Palette {
   [key: number]: string;
 }
 
+interface ButtonVariantTokens {
+  color: string;
+  background: string;
+  borderColor: string;
+  hover: {
+    color?: string;
+    background?: string;
+    borderColor?: string;
+  };
+  active: {
+    color?: string;
+    background?: string;
+    borderColor?: string;
+  };
+}
+
+interface ButtonSizeTokens {
+  gap: string;
+  paddingY: string;
+  paddingX: string;
+  fontSize: string;
+  iconSize: string;
+}
+
 export interface ITheme {
   colors: {
     primary: Palette;
     neutral: Palette;
     accent: Palette;
-    // Semantic aliases
     background: string;
     surface: string;
     surfaceHover: string;
@@ -107,6 +130,21 @@ export interface ITheme {
     lg: string;
     xl: string;
     '2xl': string;
+  };
+  components: {
+    button: {
+      variants: {
+        primary: ButtonVariantTokens;
+        ghost: ButtonVariantTokens;
+        link: ButtonVariantTokens;
+      };
+      sizes: {
+        sm: ButtonSizeTokens;
+        md: ButtonSizeTokens;
+        lg: ButtonSizeTokens;
+        xl: ButtonSizeTokens;
+      };
+    };
   };
 }
 
@@ -184,5 +222,80 @@ export const theme: ITheme = {
     lg: '1024px',
     xl: '1280px',
     '2xl': '1536px',
+  },
+
+  components: {
+    button: {
+      variants: {
+        primary: {
+          color: neutral[50],
+          background: primary[500],
+          borderColor: primary[500],
+          hover: {
+            background: primary[400],
+            borderColor: primary[400],
+          },
+          active: {
+            background: primary[600],
+            borderColor: primary[600],
+          },
+        },
+        ghost: {
+          color: neutral[50],
+          background: 'transparent',
+          borderColor: neutral[700],
+          hover: {
+            background: neutral[800],
+            borderColor: neutral[600],
+          },
+          active: {
+            background: neutral[900],
+            borderColor: neutral[500],
+          },
+        },
+        link: {
+          color: neutral[500],
+          background: 'transparent',
+          borderColor: 'transparent',
+          hover: {
+            color: neutral[50],
+            borderColor: 'transparent',
+          },
+          active: {
+            color: neutral[50],
+          },
+        },
+      },
+      sizes: {
+        sm: {
+          gap: '0.25rem',
+          paddingY: '0.25rem',
+          paddingX: '0.75rem',
+          fontSize: '0.75rem',
+          iconSize: '0.875rem',
+        },
+        md: {
+          gap: '0.5rem',
+          paddingY: '0.5rem',
+          paddingX: '1rem',
+          fontSize: '0.875rem',
+          iconSize: '1rem',
+        },
+        lg: {
+          gap: '0.5rem',
+          paddingY: '0.75rem',
+          paddingX: '1.5rem',
+          fontSize: '1rem',
+          iconSize: '1.125rem',
+        },
+        xl: {
+          gap: '0.75rem',
+          paddingY: '1rem',
+          paddingX: '2rem',
+          fontSize: '1.125rem',
+          iconSize: '1.25rem',
+        },
+      },
+    },
   },
 };
