@@ -16,8 +16,11 @@ ARCHITECTURE.md
 │
 ├── components/
 │   ├── atoms/              # Smallest indivisible UI elements
+│   │   └── index.ts        # Barrel file: re-exports all atoms
 │   ├── molecules/          # Combinations of atoms with a single responsibility
+│   │   └── index.ts        # Barrel file: re-exports all molecules
 │   └── organisms/          # Complex sections, assembled from atoms and molecules
+│       └── index.ts        # Barrel file: re-exports all organisms
 │
 ├── styles/
 │   ├── theme.ts            # Design tokens: colors, spacing, typography, breakpoints
@@ -96,6 +99,8 @@ Examples:
 - Each component file contains the component and its Styled Components in the same file.
 - Styled Components are declared first, then the props interface, then the component.
 - Export components as **named exports**, not default exports.
+- **Barrel files** (`index.ts`) in each component folder re-export all components. Import from the folder, not the file: `import { Button, Text } from '@/components/atoms'`.
+- **Every new atom or molecule must be added to the test page** (`layouts/test.tsx`) with a showcase of its variants, sizes, and states.
 
 ### Atoms, Molecules and Organisms
 

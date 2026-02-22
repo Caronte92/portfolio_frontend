@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@/components/atoms/Button';
+import { Button, Text } from '@/components/atoms';
 
 const Container = styled.div`
   display: flex;
@@ -407,6 +407,97 @@ function _TestPage() {
                 }
               />
             </div>
+          </div>
+        </div>
+      </Section>
+      <Section>
+        <SectionTitle>Text — Sizes</SectionTitle>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+        >
+          <Text as="h1" size="6xl" weight="extrabold">
+            6xl extrabold
+          </Text>
+          <Text as="h1" size="5xl" weight="bold">
+            5xl bold
+          </Text>
+          <Text as="h2" size="4xl" weight="bold">
+            4xl bold
+          </Text>
+          <Text as="h2" size="3xl" weight="semibold">
+            3xl semibold
+          </Text>
+          <Text as="h3" size="2xl" weight="semibold">
+            2xl semibold
+          </Text>
+          <Text as="h4" size="xl" weight="medium">
+            xl medium
+          </Text>
+          <Text as="h5" size="lg" weight="medium">
+            lg medium
+          </Text>
+          <Text as="p" size="base">
+            base normal
+          </Text>
+          <Text as="p" size="sm">
+            sm normal
+          </Text>
+          <Text as="span" size="xs">
+            xs normal
+          </Text>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle>Text — Colors</SectionTitle>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+        >
+          <Text as="p" size="base" color="textPrimary">
+            textPrimary
+          </Text>
+          <Text as="p" size="base" color="textSecondary">
+            textSecondary
+          </Text>
+          <Text as="p" size="base" color="textMuted">
+            textMuted
+          </Text>
+          <Text as="p" size="base" color="brand">
+            brand
+          </Text>
+          <Text as="p" size="base" color="accentText">
+            accentText
+          </Text>
+          <Text as="p" size="base" color="accentLabel">
+            accentLabel
+          </Text>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle>Text — Features</SectionTitle>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
+        >
+          <Text as="p" size="base" weight="bold" lineHeight="tight">
+            lineHeight tight — Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+          </Text>
+          <Text as="p" size="base" lineHeight="relaxed">
+            lineHeight relaxed — Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+          </Text>
+          <Text as="p" size="base" align="center">
+            align center
+          </Text>
+          <Text as="p" size="base" align="right">
+            align right
+          </Text>
+          <div style={{ maxWidth: '200px' }}>
+            <Text as="p" size="base" truncate>
+              truncate — This text is way too long and will be cut off with an
+              ellipsis
+            </Text>
           </div>
         </div>
       </Section>
