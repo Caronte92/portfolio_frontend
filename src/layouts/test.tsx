@@ -1,0 +1,309 @@
+'use client';
+
+import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[8]};
+  min-height: 100vh;
+  padding: ${({ theme }) => theme.spacing[8]};
+  color: ${({ theme }) => theme.colors.textPrimary};
+  background: ${({ theme }) => theme.colors.background};
+`;
+
+const Title = styled.h1`
+  font-size: ${({ theme }) => theme.font.size['4xl']};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  color: ${({ theme }) => theme.colors.brand};
+`;
+
+const Subtitle = styled.p`
+  font-size: ${({ theme }) => theme.font.size.lg};
+  color: ${({ theme }) => theme.colors.textSecondary};
+`;
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[4]};
+  padding: ${({ theme }) => theme.spacing[6]};
+  background: ${({ theme }) => theme.colors.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.75rem;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: ${({ theme }) => theme.font.size['2xl']};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  color: ${({ theme }) => theme.colors.accentLabel};
+`;
+
+const ColorGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: ${({ theme }) => theme.spacing[3]};
+`;
+
+const ColorSwatch = styled.div<{ $color: string }>`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[1]};
+  align-items: center;
+`;
+
+const SwatchBox = styled.div<{ $color: string }>`
+  width: 100%;
+  height: 3rem;
+  background: ${({ $color }) => $color};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: 0.5rem;
+`;
+
+const SwatchLabel = styled.span`
+  font-family: ${({ theme }) => theme.font.family.mono};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  color: ${({ theme }) => theme.colors.textMuted};
+`;
+
+const TypographySample = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[2]};
+`;
+
+const Badge = styled.span`
+  display: inline-block;
+  padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[3]}`};
+  font-family: ${({ theme }) => theme.font.family.mono};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  color: ${({ theme }) => theme.colors.accentText};
+  background: ${({ theme }) => theme.colors.brandSubtle};
+  border-radius: 0.375rem;
+`;
+
+const EnvBadge = styled(Badge)`
+  color: ${({ theme }) => theme.colors.textPrimary};
+  background: ${({ theme }) => theme.colors.brand};
+`;
+
+interface PaletteEntry {
+  label: string;
+  value: string;
+}
+
+function getPaletteEntries(
+  palette: Record<number, string>,
+  prefix: string
+): PaletteEntry[] {
+  return Object.entries(palette).map(([step, value]) => ({
+    label: `${prefix}.${step}`,
+    value,
+  }));
+}
+
+function _TestPage() {
+  const env = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'unknown';
+
+  return (
+    <Container>
+      <div>
+        <Title>Design System Test</Title>
+        <Subtitle>
+          Visual validation of theme tokens — only visible in dev & pre.
+          <EnvBadge style={{ marginLeft: '1rem' }}>{env}</EnvBadge>
+        </Subtitle>
+      </div>
+
+      <Section>
+        <SectionTitle>Primary Palette</SectionTitle>
+        <ColorGrid>
+          {getPaletteEntries(
+            {
+              50: 'oklch(0.98 0.01 308)',
+              100: 'oklch(0.90 0.06 307)',
+              200: 'oklch(0.83 0.11 306)',
+              300: 'oklch(0.72 0.18 306)',
+              400: 'oklch(0.63 0.23 304)',
+              500: 'oklch(0.54 0.25 293)',
+              600: 'oklch(0.49 0.24 293)',
+              700: 'oklch(0.43 0.21 293)',
+              800: 'oklch(0.38 0.18 294)',
+              900: 'oklch(0.29 0.14 303)',
+              950: 'oklch(0.28 0.14 291)',
+            },
+            'primary'
+          ).map(({ label, value }) => (
+            <ColorSwatch key={label} $color={value}>
+              <SwatchBox $color={value} />
+              <SwatchLabel>{label}</SwatchLabel>
+            </ColorSwatch>
+          ))}
+        </ColorGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Neutral Palette</SectionTitle>
+        <ColorGrid>
+          {getPaletteEntries(
+            {
+              50: 'oklch(0.98 0.009 286)',
+              100: 'oklch(0.91 0.02 286)',
+              200: 'oklch(0.82 0.03 286)',
+              300: 'oklch(0.74 0.03 286)',
+              400: 'oklch(0.64 0.05 285)',
+              500: 'oklch(0.49 0.04 285)',
+              600: 'oklch(0.30 0.05 283)',
+              700: 'oklch(0.23 0.04 283)',
+              800: 'oklch(0.19 0.02 284)',
+              900: 'oklch(0.17 0.02 284)',
+              950: 'oklch(0.14 0.02 284)',
+            },
+            'neutral'
+          ).map(({ label, value }) => (
+            <ColorSwatch key={label} $color={value}>
+              <SwatchBox $color={value} />
+              <SwatchLabel>{label}</SwatchLabel>
+            </ColorSwatch>
+          ))}
+        </ColorGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Accent Palette</SectionTitle>
+        <ColorGrid>
+          {getPaletteEntries(
+            {
+              50: 'oklch(0.98 0.02 201)',
+              100: 'oklch(0.96 0.04 203)',
+              200: 'oklch(0.92 0.08 205)',
+              300: 'oklch(0.87 0.12 207)',
+              400: 'oklch(0.80 0.13 212)',
+              500: 'oklch(0.71 0.13 215)',
+              600: 'oklch(0.61 0.11 222)',
+              700: 'oklch(0.52 0.09 223)',
+              800: 'oklch(0.45 0.08 224)',
+              900: 'oklch(0.40 0.07 227)',
+              950: 'oklch(0.30 0.05 230)',
+            },
+            'accent'
+          ).map(({ label, value }) => (
+            <ColorSwatch key={label} $color={value}>
+              <SwatchBox $color={value} />
+              <SwatchLabel>{label}</SwatchLabel>
+            </ColorSwatch>
+          ))}
+        </ColorGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Semantic Colors</SectionTitle>
+        <ColorGrid>
+          {[
+            { label: 'background', value: 'oklch(0.14 0.02 284)' },
+            { label: 'surface', value: 'oklch(0.17 0.02 284)' },
+            { label: 'surfaceHover', value: 'oklch(0.19 0.02 284)' },
+            { label: 'border', value: 'oklch(0.23 0.04 283)' },
+            { label: 'textPrimary', value: 'oklch(0.98 0.009 286)' },
+            { label: 'textSecondary', value: 'oklch(0.74 0.03 286)' },
+            { label: 'textMuted', value: 'oklch(0.49 0.04 285)' },
+            { label: 'brand', value: 'oklch(0.54 0.25 293)' },
+            { label: 'brandHover', value: 'oklch(0.63 0.23 304)' },
+            { label: 'brandSubtle', value: 'oklch(0.28 0.14 291)' },
+            { label: 'accentLabel', value: 'oklch(0.80 0.13 212)' },
+            { label: 'accentText', value: 'oklch(0.87 0.12 207)' },
+          ].map(({ label, value }) => (
+            <ColorSwatch key={label} $color={value}>
+              <SwatchBox $color={value} />
+              <SwatchLabel>{label}</SwatchLabel>
+            </ColorSwatch>
+          ))}
+        </ColorGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Typography</SectionTitle>
+        <TypographySample>
+          <span style={{ fontSize: '3.75rem', fontWeight: 800 }}>
+            6xl / extrabold — Hero title
+          </span>
+          <span style={{ fontSize: '3rem', fontWeight: 700 }}>
+            5xl / bold — Hero subtitle
+          </span>
+          <span style={{ fontSize: '2.25rem', fontWeight: 700 }}>
+            4xl / bold — Section heading
+          </span>
+          <span style={{ fontSize: '1.875rem', fontWeight: 600 }}>
+            3xl / semibold — Large heading
+          </span>
+          <span style={{ fontSize: '1.5rem', fontWeight: 600 }}>
+            2xl / semibold — Section subheading
+          </span>
+          <span style={{ fontSize: '1.25rem', fontWeight: 500 }}>
+            xl / medium — Subtitle
+          </span>
+          <span style={{ fontSize: '1.125rem', fontWeight: 400 }}>
+            lg / normal — Large body
+          </span>
+          <span style={{ fontSize: '1rem', fontWeight: 400 }}>
+            base / normal — Body text
+          </span>
+          <span style={{ fontSize: '0.875rem', fontWeight: 400 }}>
+            sm / normal — Secondary text
+          </span>
+          <span style={{ fontSize: '0.75rem', fontWeight: 400 }}>
+            xs / normal — Caption
+          </span>
+        </TypographySample>
+      </Section>
+
+      <Section>
+        <SectionTitle>Spacing</SectionTitle>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+        >
+          {[1, 2, 3, 4, 6, 8, 12, 16, 24, 32].map((step) => {
+            const values: Record<number, string> = {
+              1: '0.25rem',
+              2: '0.5rem',
+              3: '0.75rem',
+              4: '1rem',
+              6: '1.5rem',
+              8: '2rem',
+              12: '3rem',
+              16: '4rem',
+              24: '6rem',
+              32: '8rem',
+            };
+            return (
+              <div
+                key={step}
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
+              >
+                <SwatchLabel style={{ minWidth: '6rem' }}>
+                  spacing.{step}
+                </SwatchLabel>
+                <div
+                  style={{
+                    width: values[step],
+                    height: '1rem',
+                    background: 'oklch(0.54 0.25 293)',
+                    borderRadius: '0.25rem',
+                  }}
+                />
+                <SwatchLabel>{values[step]}</SwatchLabel>
+              </div>
+            );
+          })}
+        </div>
+      </Section>
+    </Container>
+  );
+}
+
+const TestPageMemo = React.memo(_TestPage);
+
+export default function TestPage() {
+  return <TestPageMemo />;
+}

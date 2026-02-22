@@ -1,4 +1,4 @@
-# ARCHITECTURE.md
+ARCHITECTURE.md
 
 > Folder structure, conventions, and architectural decisions for this project.
 > Read in conjunction with [`AGENTS.md`](./AGENTS.md).
@@ -10,9 +10,9 @@
 ```
 /
 ├── app/
-│   └── [lang]/
-│       ├── layout.tsx      # Global layout: fonts, metadata, Styled Components provider
-│       └── page.tsx        # Main page: assembles all organisms in order
+│   ├── layout.tsx          # Global layout: fonts, metadata, Styled Components provider
+│   ├── page.tsx            # Main page: assembles all organisms in order
+│   └── globals.css         # Minimal global resets only (no utility classes)
 │
 ├── components/
 │   ├── atoms/              # Smallest indivisible UI elements
@@ -21,19 +21,11 @@
 │
 ├── styles/
 │   ├── theme.ts            # Design tokens: colors, spacing, typography, breakpoints
-│   ├── GlobalStyle.ts      # Styled Components global styles
-│   └── styled.d.ts         # Styled Components theme type augmentation
+│   └── GlobalStyle.ts      # Styled Components global styles
 │
-├── layouts/                # Layout wrappers (BaseLayout, Home)
-├── middlewares/             # Middleware definitions (i18n routing)
 ├── lib/                    # Utility functions and helpers
 ├── types/                  # Shared TypeScript types and interfaces
-│
-├── i18n.ts                 # next-intl request config
-├── proxy.ts                # Middleware proxy/router
-│
 ├── public/                 # Static assets (images, fonts, icons)
-├── locales/                # Translation JSON files (en, es, cat)
 │
 ├── AGENTS.md
 ├── ARCHITECTURE.md
@@ -102,21 +94,59 @@ Examples:
 - One component per file.
 - File name matches the component name in PascalCase: `ProjectCard.tsx`.
 - Each component file contains the component and its Styled Components in the same file.
-- Props interfaces are defined in the same file, above the component.
-- Export components as named exports, not default exports.
+- Styled Components are declared first, then the props interface, then the component.
+- Export components as **named exports**, not default exports.
+
+### Atoms, Molecules and Organisms
 
 ```tsx
-// ✅ Correct
-interface ButtonProps {
-  label: string;
-  onClick?: () => void;
-}
+import React from 'react';
+import styled from 'styled-components';
 
-const StyledButton = styled.button`
-  ...
+const Container = styled.div`
+  // ...
 `;
 
-export const Button = ({ label, onClick }: ButtonProps) => ({ label });
+interface ComponentNameProps {
+}
+
+const _ComponentName = ({ ...props }: ComponentNameProps) => (
+
+
+);
+
+export const ComponentName = React.memo(_ComponentName);
+```
+
+### app/page.tsx
+
+`page.tsx` uses a wrapper pattern to allow injecting `BaseLayout` or global providers if needed, without touching the internal component logic.
+
+```tsx
+import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  // ...
+`;
+
+interface PageProps {
+}
+
+function _Page({ ...props }: PageProps) {
+  return (
+
+
+  );
+}
+
+const PageMemo = React.memo(_Page);
+
+export default function Page(props: PageProps) {
+  return (
+
+  );
+}
 ```
 
 ---

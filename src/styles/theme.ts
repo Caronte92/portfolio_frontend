@@ -1,4 +1,5 @@
-// Colours
+// ─── Color Palettes ─────────────────────────────────────────
+
 const primary = {
   50: 'oklch(0.98 0.01 308)',
   100: 'oklch(0.90 0.06 307)',
@@ -41,37 +42,147 @@ const accent = {
   950: 'oklch(0.30 0.05 230)',
 };
 
+// ─── Types ──────────────────────────────────────────────────
+
 interface Palette {
   [key: number]: string;
 }
 
-// Devices
-export interface Devices {
-  mobile: string;
-  tablet: string;
-  laptop: string;
-  desktop: string;
-}
-
 export interface ITheme {
-  breakpoints: Devices;
   colors: {
     primary: Palette;
     neutral: Palette;
     accent: Palette;
+    // Semantic aliases
+    background: string;
+    surface: string;
+    surfaceHover: string;
+    border: string;
+    textPrimary: string;
+    textSecondary: string;
+    textMuted: string;
+    brand: string;
+    brandHover: string;
+    brandSubtle: string;
+    accentLabel: string;
+    accentText: string;
+  };
+  font: {
+    family: {
+      sans: string;
+      mono: string;
+    };
+    size: {
+      xs: string;
+      sm: string;
+      base: string;
+      lg: string;
+      xl: string;
+      '2xl': string;
+      '3xl': string;
+      '4xl': string;
+      '5xl': string;
+      '6xl': string;
+    };
+    weight: {
+      normal: number;
+      medium: number;
+      semibold: number;
+      bold: number;
+      extrabold: number;
+    };
+    lineHeight: {
+      tight: number;
+      snug: number;
+      normal: number;
+      relaxed: number;
+    };
+  };
+  spacing: {
+    [key: number]: string;
+  };
+  breakpoints: {
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    '2xl': string;
   };
 }
 
+// ─── Theme ──────────────────────────────────────────────────
+
 export const theme: ITheme = {
-  breakpoints: {
-    mobile: '480px',
-    tablet: '768px',
-    laptop: '1024px',
-    desktop: '1440px',
-  },
   colors: {
     primary,
     neutral,
     accent,
+
+    // Semantic aliases
+    background: neutral[950],
+    surface: neutral[900],
+    surfaceHover: neutral[800],
+    border: neutral[700],
+    textPrimary: neutral[50],
+    textSecondary: neutral[300],
+    textMuted: neutral[500],
+    brand: primary[500],
+    brandHover: primary[400],
+    brandSubtle: primary[950],
+    accentLabel: accent[400],
+    accentText: accent[300],
+  },
+
+  font: {
+    family: {
+      sans: "var(--font-work-sans), 'Work Sans', system-ui, -apple-system, sans-serif",
+      mono: "ui-monospace, 'Cascadia Code', 'Fira Code', monospace",
+    },
+    size: {
+      xs: '0.75rem',
+      sm: '0.875rem',
+      base: '1rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      '2xl': '1.5rem',
+      '3xl': '1.875rem',
+      '4xl': '2.25rem',
+      '5xl': '3rem',
+      '6xl': '3.75rem',
+    },
+    weight: {
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      bold: 700,
+      extrabold: 800,
+    },
+    lineHeight: {
+      tight: 1.1,
+      snug: 1.3,
+      normal: 1.5,
+      relaxed: 1.75,
+    },
+  },
+
+  spacing: {
+    1: '0.25rem',
+    2: '0.5rem',
+    3: '0.75rem',
+    4: '1rem',
+    6: '1.5rem',
+    8: '2rem',
+    12: '3rem',
+    16: '4rem',
+    24: '6rem',
+    32: '8rem',
+  },
+
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    '2xl': '1536px',
   },
 };

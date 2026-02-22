@@ -23,11 +23,11 @@ export const GlobalStyle = createGlobalStyle`
 
   /* 4. Body defaults — merged with global body styles */
   body {
-    line-height: 1.5;
+    line-height: ${({ theme }) => theme.font.lineHeight.normal};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: var(--foreground);
-    background: var(--background);
+    color: ${({ theme }) => theme.colors.textPrimary};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   /* 5. Media elements defaults */
@@ -72,32 +72,13 @@ export const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
   }
 
-  /* ===== Custom Variables ===== */
-  :root {
-    --background: #fff;
-    --foreground: #171717;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #0a0a0a;
-      --foreground: #ededed;
-    }
-  }
-
   /* ===== Global Styles ===== */
   html, body {
     width: 100%;
     max-width: 100vw;
     height: 100%;
     overflow-x: hidden;
-    font-family: var(--font-work-sans), 'Work Sans', sans-serif;
-  }
-
-  /* Dark mode */
-  @media (prefers-color-scheme: dark) {
-    html {
-      color-scheme: dark;
-    }
+    font-family: ${({ theme }) => theme.font.family.sans};
+    color-scheme: dark;
   }
 `;
