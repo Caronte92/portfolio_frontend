@@ -6,3 +6,5 @@ export { Text } from './Text';
 export type { TextProps } from './Text';
 export { Pill } from './Pill';
 export type { PillProps } from './Pill';
+export { Link } from './Link';
+export type { LinkProps } from './Link';

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Dropdown, Text, Pill } from '@/components/atoms';
+import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
 
 const DEMO_OPTIONS = [
@@ -557,6 +557,24 @@ function _TestPage() {
               truncate — This text is way too long and will be cut off with an
               ellipsis
             </Text>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle>Links — Variants</SectionTitle>
+        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Primary
+            </SwatchLabel>
+            <Link text="Live Demo" href="#" variant="primary" />
+          </div>
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Muted
+            </SwatchLabel>
+            <Link text="Source" href="#" variant="muted" />
           </div>
         </div>
       </Section>
