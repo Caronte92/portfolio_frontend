@@ -2,7 +2,27 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Text } from '@/components/atoms';
+import { Button, Dropdown, Text } from '@/components/atoms';
+import { LanguageSwitcher } from '@/components/molecules';
+
+const DEMO_OPTIONS = [
+  { value: 'react', label: 'React' },
+  { value: 'vue', label: 'Vue' },
+  { value: 'svelte', label: 'Svelte' },
+  { value: 'angular', label: 'Angular' },
+];
+
+function DropdownDemo() {
+  const [value, setValue] = React.useState('react');
+  return (
+    <Dropdown
+      options={DEMO_OPTIONS}
+      value={value}
+      onChange={setValue}
+      ariaLabel="Framework"
+    />
+  );
+}
 
 const Container = styled.div`
   display: flex;
@@ -498,6 +518,26 @@ function _TestPage() {
               truncate — This text is way too long and will be cut off with an
               ellipsis
             </Text>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle>Dropdown</SectionTitle>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
+        >
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Generic Dropdown
+            </SwatchLabel>
+            <DropdownDemo />
+          </div>
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Language Switcher (molecule)
+            </SwatchLabel>
+            <LanguageSwitcher />
           </div>
         </div>
       </Section>

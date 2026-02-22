@@ -72,6 +72,34 @@ interface ButtonSizeTokens {
   iconSize: string;
 }
 
+interface DropdownTokens {
+  trigger: {
+    color: string;
+    background: string;
+    borderColor: string;
+    hover: {
+      color: string;
+      background: string;
+      borderColor: string;
+    };
+  };
+  menu: {
+    background: string;
+    borderColor: string;
+    shadow: string;
+  };
+  item: {
+    color: string;
+    hover: {
+      color: string;
+      background: string;
+    };
+    active: {
+      color: string;
+    };
+  };
+}
+
 export interface ITheme {
   colors: {
     primary: Palette;
@@ -145,6 +173,7 @@ export interface ITheme {
         xl: ButtonSizeTokens;
       };
     };
+    dropdown: DropdownTokens;
   };
 }
 
@@ -294,6 +323,33 @@ export const theme: ITheme = {
           paddingX: '2rem',
           fontSize: '1.125rem',
           iconSize: '1.25rem',
+        },
+      },
+    },
+    dropdown: {
+      trigger: {
+        color: neutral[300],
+        background: 'transparent',
+        borderColor: neutral[700],
+        hover: {
+          color: neutral[50],
+          background: neutral[800],
+          borderColor: neutral[600],
+        },
+      },
+      menu: {
+        background: neutral[900],
+        borderColor: neutral[700],
+        shadow: '0 4px 16px rgba(0, 0, 0, 0.4)',
+      },
+      item: {
+        color: neutral[300],
+        hover: {
+          color: neutral[50],
+          background: neutral[800],
+        },
+        active: {
+          color: primary[400],
         },
       },
     },
