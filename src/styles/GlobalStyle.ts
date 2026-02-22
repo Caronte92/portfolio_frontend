@@ -42,6 +42,14 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
   }
 
+  /* 7. Button reset */
+  button {
+    appearance: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
   /* 7. Avoid text overflows */
   p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
