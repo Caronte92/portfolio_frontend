@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Dropdown, Text } from '@/components/atoms';
+import { Button, Dropdown, Text, Pill } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
 
 const DEMO_OPTIONS = [
@@ -430,6 +430,45 @@ function _TestPage() {
           </div>
         </div>
       </Section>
+
+      <Section>
+        <SectionTitle>Pills — Variants & Sizes</SectionTitle>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Solid
+            </SwatchLabel>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <Pill label="Small" variant="solid" size="sm" />
+              <Pill label="Medium" variant="solid" size="md" />
+              <Pill label="Large" variant="solid" size="lg" />
+            </div>
+          </div>
+
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Subtle
+            </SwatchLabel>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <Pill label="Small" variant="subtle" size="sm" />
+              <Pill label="Medium" variant="subtle" size="md" />
+              <Pill label="Large" variant="subtle" size="lg" />
+            </div>
+          </div>
+
+          <div>
+            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
+              Outline
+            </SwatchLabel>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <Pill label="Small" variant="outline" size="sm" />
+              <Pill label="Medium" variant="outline" size="md" />
+              <Pill label="Large" variant="outline" size="lg" />
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <Section>
         <SectionTitle>Text — Sizes</SectionTitle>
         <div

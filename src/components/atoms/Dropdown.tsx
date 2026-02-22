@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { IconChevron } from '@/components/atoms/icons';
 
 const Wrapper = styled.div`
   position: relative;
@@ -87,17 +88,7 @@ const MenuItem = styled.li<{ $active: boolean }>`
 `;
 
 const ChevronIcon = ({ open }: { open: boolean }) => (
-  <svg
-    viewBox="0 0 12 12"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
-  >
-    <path d="M3 4.5 L6 7.5 L9 4.5" />
-  </svg>
+  <IconChevron open={open} size={12} ariaLabel="chevron" />
 );
 
 export interface DropdownOption {
@@ -111,9 +102,23 @@ export interface DropdownProps {
   value: string;
   onChange: (value: string) => void;
   ariaLabel?: string;
+  triggerIcon?: React.ReactNode;
 }
 
-const _Dropdown = ({ options, value, onChange, ariaLabel }: DropdownProps) => {
+export interface DropdownProps {
+  options: DropdownOption[];
+  value: string;
+  onChange: (value: string) => void;
+  ariaLabel?: string;
+}
+
+const _Dropdown = ({
+  options,
+  value,
+  onChange,
+  ariaLabel,
+  triggerIcon,
+}: DropdownProps) => {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -162,7 +167,7 @@ const _Dropdown = ({ options, value, onChange, ariaLabel }: DropdownProps) => {
         aria-expanded={open}
         aria-label={ariaLabel}
       >
-        {activeOption?.icon}
+        {triggerIcon}
         {activeLabel}
         <ChevronIcon open={open} />
       </Trigger>

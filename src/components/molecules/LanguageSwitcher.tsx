@@ -3,6 +3,7 @@
 import React, { useCallback } from 'react';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import { Dropdown, type DropdownOption } from '@/components/atoms';
+import { IconLanguage } from '@/components/atoms/icons';
 import type { Locale } from '../../../i18n-config';
 
 const OPTIONS: DropdownOption[] = [
@@ -26,12 +27,15 @@ const _LanguageSwitcher = () => {
     [pathname, router]
   );
 
+  // Icon only in trigger, not in options
   return (
     <Dropdown
       options={OPTIONS}
       value={currentLang}
       onChange={handleChange}
       ariaLabel="Language"
+      // @ts-ignore
+      triggerIcon={<IconLanguage size={18} ariaLabel="Selected language" />}
     />
   );
 };
