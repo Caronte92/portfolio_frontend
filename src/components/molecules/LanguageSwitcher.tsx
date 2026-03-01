@@ -34,8 +34,9 @@ const _LanguageSwitcher = () => {
       value={currentLang}
       onChange={handleChange}
       ariaLabel="Language"
-      // @ts-ignore
-      triggerIcon={<IconLanguage size={18} ariaLabel="Selected language" />}
+      triggerIcon={
+        <IconLanguage size="1.125rem" ariaLabel="Selected language" />
+      }
     />
   );
 };

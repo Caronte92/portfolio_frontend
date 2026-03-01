@@ -1,6 +1,10 @@
 {
-  "Common": {
-    "title": "HELLO WORLD",
-    "subtitle": "I'm Sergi."
+  "Header": {
+    "button_contact": "Let's Talk",
+    "nav_section_about": "About",
+    "nav_section_stack": "Stack",
+    "nav_section_projects": "Projects",
+    "nav_section_experience": "Experience",
+    "nav_section_contact": "Contact"
   }
 }

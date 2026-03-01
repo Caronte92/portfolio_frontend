@@ -76,7 +76,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body {
     width: 100%;
     max-width: 100vw;
-    height: 100%;
+    min-height: 100%;
     overflow-x: hidden;
     font-family: ${({ theme }) => theme.font.family.sans};
     color-scheme: dark;

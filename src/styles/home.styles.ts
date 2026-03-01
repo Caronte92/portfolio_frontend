@@ -130,35 +130,6 @@ export const SecondaryLink = styled.a`
   }
 `;
 
-export const Footer = styled.footer`
-  display: flex;
-  grid-row-start: 3;
-  gap: 24px;
-
-  a {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  img {
-    flex-shrink: 0;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    a:hover {
-      text-decoration: underline;
-      text-underline-offset: 4px;
-    }
-  }
-
-  @media (width <= 600px) {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
 export const Logo = styled.div`
   @media (prefers-color-scheme: dark) {
     img {

@@ -38,7 +38,12 @@ const Trigger = styled.button`
       theme.components.dropdown.trigger.hover.borderColor};
   }
 
+  & > svg:first-child {
+    flex-shrink: 0;
+  }
+
   & > svg:last-child {
+    flex-shrink: 0;
     width: 0.75rem;
     height: 0.75rem;
     transition: transform 0.2s ease;
@@ -103,13 +108,6 @@ export interface DropdownProps {
   onChange: (value: string) => void;
   ariaLabel?: string;
   triggerIcon?: React.ReactNode;
-}
-
-export interface DropdownProps {
-  options: DropdownOption[];
-  value: string;
-  onChange: (value: string) => void;
-  ariaLabel?: string;
 }
 
 const _Dropdown = ({

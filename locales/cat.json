@@ -1,6 +1,10 @@
 {
-  "Common": {
-    "title": "HOLA MON",
-    "subtitle": "Sòc en Sergi."
+  "Header": {
+    "button_contact": "Parlem",
+    "nav_section_about": "Sobre",
+    "nav_section_stack": "Tecnologies",
+    "nav_section_projects": "Projectes",
+    "nav_section_experience": "Experiència",
+    "nav_section_contact": "Contacte"
   }
 }

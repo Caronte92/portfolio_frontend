@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
+import BaseLayout from '@/layouts/base';
 
 const DEMO_OPTIONS = [
   { value: 'react', label: 'React' },
@@ -29,7 +30,8 @@ const Container = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[8]};
   min-height: 100vh;
-  padding: ${({ theme }) => theme.spacing[8]};
+  padding: 6.25rem ${({ theme }) => theme.spacing[8]}
+    ${({ theme }) => theme.spacing[8]};
   color: ${({ theme }) => theme.colors.textPrimary};
   background: ${({ theme }) => theme.colors.background};
 `;
@@ -605,5 +607,9 @@ function _TestPage() {
 const TestPageMemo = React.memo(_TestPage);
 
 export default function TestPage() {
-  return <TestPageMemo />;
+  return (
+    <BaseLayout>
+      <TestPageMemo />
+    </BaseLayout>
+  );
 }
