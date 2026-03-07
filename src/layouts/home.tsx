@@ -1,19 +1,19 @@
 'use client';
 
 import React from 'react';
-import { Header } from '@/components/organisms';
+import BaseLayout from '@/layouts/base';
 import { Page } from '../styles/home.styles';
 
 function _Home() {
-  return (
-    <Page>
-      <Header />
-    </Page>
-  );
+  return <Page></Page>;
 }
 
 const HomeMemo = React.memo(_Home);
 
 export default function Home() {
-  return <HomeMemo />;
+  return (
+    <BaseLayout>
+      <HomeMemo />
+    </BaseLayout>
+  );
 }

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
 import BaseLayout from '@/layouts/base';
+import { Page } from '@/styles/home.styles';
 
 const DEMO_OPTIONS = [
   { value: 'react', label: 'React' },
@@ -24,17 +25,6 @@ function DropdownDemo() {
     />
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[8]};
-  min-height: 100vh;
-  padding: 6.25rem ${({ theme }) => theme.spacing[8]}
-    ${({ theme }) => theme.spacing[8]};
-  color: ${({ theme }) => theme.colors.textPrimary};
-  background: ${({ theme }) => theme.colors.background};
-`;
 
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.font.size['4xl']};
@@ -130,7 +120,7 @@ function _TestPage() {
   const env = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'unknown';
 
   return (
-    <Container>
+    <Page>
       <div>
         <Title>Design System Test</Title>
         <Subtitle>
@@ -600,7 +590,7 @@ function _TestPage() {
           </div>
         </div>
       </Section>
-    </Container>
+    </Page>
   );
 }
 

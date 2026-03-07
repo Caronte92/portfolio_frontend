@@ -72,6 +72,14 @@ interface ButtonSizeTokens {
   iconSize: string;
 }
 
+interface HeaderTokens {
+  background: string;
+  scrolled: {
+    background: string;
+    borderColor: string;
+  };
+}
+
 interface DropdownTokens {
   trigger: {
     color: string;
@@ -149,6 +157,14 @@ export interface ITheme {
       relaxed: number;
     };
   };
+  iconSize: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    '2xl': string;
+  };
   spacing: {
     [key: number]: string;
   };
@@ -174,6 +190,7 @@ export interface ITheme {
       };
     };
     dropdown: DropdownTokens;
+    header: HeaderTokens;
   };
 }
 
@@ -198,6 +215,15 @@ export const theme: ITheme = {
     brandSubtle: primary[950],
     accentLabel: accent[400],
     accentText: accent[300],
+  },
+
+  iconSize: {
+    xs: '0.75rem',
+    sm: '1rem',
+    md: '1.25rem',
+    lg: '1.5rem',
+    xl: '2rem',
+    '2xl': '2.75rem',
   },
 
   font: {
@@ -351,6 +377,13 @@ export const theme: ITheme = {
         active: {
           color: primary[400],
         },
+      },
+    },
+    header: {
+      background: 'transparent',
+      scrolled: {
+        background: 'oklch(0% 0 0 / 0.4)',
+        borderColor: 'oklch(100% 0 0 / 0.1)',
       },
     },
   },
