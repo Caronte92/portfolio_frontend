@@ -1,5 +1,4 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo "🔍 Ejecutando ESLint en todo el proyecto..."
 npm run lint
