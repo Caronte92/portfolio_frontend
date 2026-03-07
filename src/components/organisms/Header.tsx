@@ -138,7 +138,7 @@ const MobileMenuHeader = styled.div<{ $scrolled: boolean }>`
   padding: ${({ $scrolled }) => ($scrolled ? '10px 2rem' : '1.25rem 2rem')};
 `;
 
-const MobileMenuContent = styled.div`
+const MobileMenuContent = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
