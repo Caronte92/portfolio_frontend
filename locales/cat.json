@@ -6,5 +6,12 @@
     "nav_section_projects": "Projectes",
     "nav_section_experience": "Experiència",
     "nav_section_contact": "Contacte"
+  },
+  "Hero": {
+    "eyebrow": "Senior Web Developer · Next.js & .NET",
+    "title": "Sergi Mitjavila del Amo",
+    "subtitle": "Desenvolupador frontend amb més de 5 anys d'experiència construint interfícies web eficients i accessibles.",
+    "button_work": "Veure el Meu Treball",
+    "button_talk": "Parlem"
   }
 }
