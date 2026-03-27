@@ -93,12 +93,12 @@ const ActionsWrapperMobile = styled.div`
   }
 `;
 
-const Nav = styled.nav`
-  display: flex;
-  gap: 1.25rem;
-  justify-content: space-between;
-  margin: 0 auto;
-`;
+// const Nav = styled.nav`
+//   display: flex;
+//   gap: 1.25rem;
+//   justify-content: space-between;
+//   margin: 0 auto;
+// `;
 
 const ButtonWrapper = styled.div`
   display: none;
@@ -145,22 +145,22 @@ const MobileMenuContent = styled.nav`
   padding: 0.5rem 1.5rem 1.5rem;
 `;
 
-const MobileNavLink = styled.button`
-  padding: 0.75rem 0;
-  font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme }) => theme.font.size.base};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  color: ${({ theme }) => theme.colors.textSecondary};
-  text-align: left;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color 0.15s ease;
+// const MobileNavLink = styled.button`
+//   padding: 0.75rem 0;
+//   font-family: ${({ theme }) => theme.font.family.sans};
+//   font-size: ${({ theme }) => theme.font.size.base};
+//   font-weight: ${({ theme }) => theme.font.weight.medium};
+//   color: ${({ theme }) => theme.colors.textSecondary};
+//   text-align: left;
+//   cursor: pointer;
+//   background: none;
+//   border: none;
+//   transition: color 0.15s ease;
 
-  &:hover {
-    color: ${({ theme }) => theme.colors.textPrimary};
-  }
-`;
+//   &:hover {
+//     color: ${({ theme }) => theme.colors.textPrimary};
+//   }
+// `;
 
 const MobileLanguageSwitcher = styled.div`
   display: flex;
@@ -264,7 +264,14 @@ function _Header() {
     setMobileMenuOpen((prev) => !prev);
   }, []);
 
-  const renderTalkButton = () => <Button text={t('button_contact')} />;
+  const renderTalkButton = () => (
+    <Button
+      text={t('button_contact')}
+      href="https://www.linkedin.com/in/sergi-mitjavila-del-amo-788746110"
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  );
 
   return (
     <>
@@ -274,13 +281,13 @@ function _Header() {
             <IconLogo size="100%" />
           </LogoWrapper>
           <ActionsWrapper>
-            <Nav>
+            {/* <Nav>
               <Button text={t('nav_section_about')} variant="link" />
               <Button text={t('nav_section_stack')} variant="link" />
               <Button text={t('nav_section_projects')} variant="link" />
               <Button text={t('nav_section_experience')} variant="link" />
               <Button text={t('nav_section_contact')} variant="link" />
-            </Nav>
+            </Nav> */}
             <LanguageSwitcher />
             {renderTalkButton()}
           </ActionsWrapper>
@@ -306,7 +313,7 @@ function _Header() {
           </ActionsWrapperMobile>
         </MobileMenuHeader>
         <MobileMenuContent>
-          <MobileNavLink onClick={handleNavClick}>
+          {/* <MobileNavLink onClick={handleNavClick}>
             {t('nav_section_about')}
           </MobileNavLink>
           <MobileNavLink onClick={handleNavClick}>
@@ -320,7 +327,7 @@ function _Header() {
           </MobileNavLink>
           <MobileNavLink onClick={handleNavClick}>
             {t('nav_section_contact')}
-          </MobileNavLink>
+          </MobileNavLink> */}
           <MobileLanguageSwitcher>
             {LANGUAGES.map((lang) => (
               <LanguagePill

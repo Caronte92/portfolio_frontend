@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 import { Button } from '@/components/atoms';
 import { IconGitHub } from '@/components/atoms/icons';
+import IconLinkedinLogo from '@/components/atoms/icons/IconLinkedinLogo';
 
 const Container = styled.section`
   display: flex;
@@ -18,6 +19,11 @@ const HeroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[6]};
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 60%;
+  }
 `;
 
 const HeroBackground = styled.div`
@@ -82,9 +88,15 @@ const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[4]};
+  width: 100%;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
+    width: 60%;
+  }
 `;
 
 const IconsWrapper = styled.div`
+  z-index: 1;
   display: flex;
   gap: ${({ theme }) => theme.spacing[4]};
   justify-content: center;
@@ -109,14 +121,36 @@ function _Hero() {
         <Subtitle>{t('subtitle')}</Subtitle>
       </HeroWrapper>
       <ButtonsWrapper>
-        <Button text={t('button_work')} variant="primary" size="lg" />
-        <Button text={t('button_talk')} variant="ghost" size="lg" />
+        {/* <Button text={t('button_work')} variant="primary" size="lg" /> */}
+        <Button
+          text={t('button_talk')}
+          variant="ghost"
+          size="lg"
+          href="https://www.linkedin.com/in/sergi-mitjavila-del-amo-788746110"
+          target="_blank"
+          rel="noopener noreferrer"
+        />
       </ButtonsWrapper>
       <IconsWrapper>
         <SocialLinksWrapper>
-          <IconGitHub />
-          <IconGitHub />
-          <IconGitHub />
+          <Button
+            variant="ghost"
+            size="lg"
+            iconLeft={<IconGitHub />}
+            href="https://github.com/Caronte92/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          />
+          <Button
+            variant="ghost"
+            size="lg"
+            iconLeft={<IconLinkedinLogo />}
+            href="https://www.linkedin.com/in/sergi-mitjavila-del-amo-788746110"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          />
         </SocialLinksWrapper>
       </IconsWrapper>
     </Container>

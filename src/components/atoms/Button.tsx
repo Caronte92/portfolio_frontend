@@ -96,11 +96,14 @@ export interface ButtonProps extends Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children'
 > {
-  text: string;
+  text?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const _Button = ({
@@ -109,13 +112,40 @@ const _Button = ({
   size = 'md',
   iconLeft,
   iconRight,
+  href,
+  target,
+  rel,
   ...rest
-}: ButtonProps) => (
-  <StyledButton $variant={variant} $size={size} {...rest}>
-    {iconLeft}
-    {text}
-    {iconRight}
-  </StyledButton>
-);
+}: ButtonProps) => {
+  // Custom click handler to simulate anchor behavior if href is present
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (href) {
+      e.preventDefault();
+      window.open(
+        href,
+        target || '_blank',
+        rel ? 'noopener,noreferrer' : undefined
+      );
+    }
+    if (rest.onClick) {
+      rest.onClick(e);
+    }
+  };
+  return (
+    <StyledButton
+      $variant={variant}
+      $size={size}
+      onClick={handleClick}
+      {...rest}
+      {...(href
+        ? { 'data-href': href, 'data-target': target, 'data-rel': rel }
+        : {})}
+    >
+      {iconLeft}
+      {text && text}
+      {iconRight}
+    </StyledButton>
+  );
+};
 
 export const Button = React.memo(_Button);
