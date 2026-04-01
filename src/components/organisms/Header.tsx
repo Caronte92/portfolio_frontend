@@ -1,10 +1,9 @@
 'use client';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+// import { useTranslations } from 'next-intl';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import styled from 'styled-components';
-import { Button } from '@/components/atoms';
 import { IconClose, IconKebab, IconLogo } from '@/components/atoms/icons';
 import { LanguageSwitcher } from '@/components/molecules';
 import type { Locale } from '../../../i18n-config';
@@ -100,14 +99,6 @@ const ActionsWrapperMobile = styled.div`
 //   margin: 0 auto;
 // `;
 
-const ButtonWrapper = styled.div`
-  display: none;
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: block;
-  }
-`;
-
 const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   top: 0;
@@ -115,8 +106,8 @@ const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
   left: 0;
   z-index: 100;
   display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
-  background: ${({ theme }) => theme.colors.surface};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  background: ${({ theme }) => theme.colors.neutral.bg};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.neutral.grey};
   border-radius: 0 0 0.75rem 0.75rem;
   box-shadow: 0 4px 24px rgb(0 0 0 / 40%);
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
@@ -174,20 +165,16 @@ const LanguagePill = styled.button<{ $active: boolean }>`
   font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ $active, theme }) =>
-    $active ? theme.colors.neutral[950] : theme.colors.textSecondary};
+    $active ? theme.colors.neutral.white : theme.colors.neutral.grey};
+  text-decoration: ${({ $active }) => ($active ? 'underline' : 'none')};
   cursor: pointer;
-  background: ${({ $active, theme }) =>
-    $active ? theme.colors.accent[400] : 'transparent'};
-  border: 1px solid
-    ${({ $active, theme }) => ($active ? 'transparent' : theme.colors.border)};
+  background: transparent;
+  border: none;
   border-radius: 9999px;
   transition: all 0.15s ease;
 
   &:hover {
-    color: ${({ $active, theme }) =>
-      $active ? theme.colors.neutral[950] : theme.colors.textPrimary};
-    background: ${({ $active, theme }) =>
-      $active ? theme.colors.accent[400] : theme.colors.surfaceHover};
+    color: ${({ theme }) => theme.colors.neutral.grey};
   }
 `;
 
@@ -197,7 +184,7 @@ const CloseButton = styled.button`
   justify-content: center;
   width: 1.25rem;
   height: 1.25rem;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.neutral.white};
   cursor: pointer;
   background: none;
   border: none;
@@ -209,7 +196,7 @@ const CloseButton = styled.button`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.textPrimary};
+    color: ${({ theme }) => theme.colors.neutral.grey};
   }
 `;
 
@@ -220,7 +207,7 @@ const LANGUAGES = [
 ] as const;
 
 function _Header() {
-  const t = useTranslations('Header');
+  // const t = useTranslations('Header');
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
@@ -264,15 +251,6 @@ function _Header() {
     setMobileMenuOpen((prev) => !prev);
   }, []);
 
-  const renderTalkButton = () => (
-    <Button
-      text={t('button_contact')}
-      href="https://www.linkedin.com/in/sergi-mitjavila-del-amo-788746110"
-      target="_blank"
-      rel="noopener noreferrer"
-    />
-  );
-
   return (
     <>
       <Container $scrolled={scrolled}>
@@ -289,13 +267,11 @@ function _Header() {
               <Button text={t('nav_section_contact')} variant="link" />
             </Nav> */}
             <LanguageSwitcher />
-            {renderTalkButton()}
           </ActionsWrapper>
           <ActionsWrapperMobile>
             <IconKebabWrapper onClick={toggleMobileMenu}>
               <IconKebab size="100%" />
             </IconKebabWrapper>
-            <ButtonWrapper>{renderTalkButton()}</ButtonWrapper>
           </ActionsWrapperMobile>
         </HeaderWrapper>
       </Container>
@@ -309,7 +285,6 @@ function _Header() {
             <CloseButton onClick={toggleMobileMenu} aria-label="Close menu">
               <IconClose size="100%" />
             </CloseButton>
-            <ButtonWrapper>{renderTalkButton()}</ButtonWrapper>
           </ActionsWrapperMobile>
         </MobileMenuHeader>
         <MobileMenuContent>

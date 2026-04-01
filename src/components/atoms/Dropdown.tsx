@@ -2,7 +2,6 @@
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { IconChevron } from '@/components/atoms/icons';
 
 const Wrapper = styled.div`
   position: relative;
@@ -22,8 +21,6 @@ const Trigger = styled.button`
   white-space: nowrap;
   cursor: pointer;
   background: ${({ theme }) => theme.components.dropdown.trigger.background};
-  border: 1px solid
-    ${({ theme }) => theme.components.dropdown.trigger.borderColor};
   border-radius: 0.75rem;
   transition:
     color 0.2s ease,
@@ -79,6 +76,7 @@ const MenuItem = styled.li<{ $active: boolean }>`
     $active
       ? theme.components.dropdown.item.active.color
       : theme.components.dropdown.item.color};
+  text-decoration: ${({ $active }) => ($active ? 'underline' : 'none')};
   cursor: pointer;
   border-radius: 0.5rem;
   transition:
@@ -91,10 +89,6 @@ const MenuItem = styled.li<{ $active: boolean }>`
       theme.components.dropdown.item.hover.background};
   }
 `;
-
-const ChevronIcon = ({ open }: { open: boolean }) => (
-  <IconChevron open={open} size={12} ariaLabel="chevron" />
-);
 
 export interface DropdownOption {
   value: string;
@@ -167,7 +161,6 @@ const _Dropdown = ({
       >
         {triggerIcon}
         {activeLabel}
-        <ChevronIcon open={open} />
       </Trigger>
       <Menu $open={open} role="listbox" aria-label={ariaLabel}>
         {options.map((option) => (

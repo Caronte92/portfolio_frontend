@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
 import BaseLayout from '@/layouts/base';
@@ -29,28 +29,28 @@ function DropdownDemo() {
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.font.size['4xl']};
   font-weight: ${({ theme }) => theme.font.weight.bold};
-  color: ${({ theme }) => theme.colors.brand};
+  color: ${({ theme }) => theme.colors.neutral.white};
 `;
 
 const Subtitle = styled.p`
   font-size: ${({ theme }) => theme.font.size.lg};
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.neutral.grey};
 `;
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[4]};
-  padding: ${({ theme }) => theme.spacing[6]};
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  padding: ${({ theme }) => theme.spacing[4]};
+  background: ${({ theme }) => theme.colors.neutral.black};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.black};
   border-radius: 0.75rem;
 `;
 
 const SectionTitle = styled.h2`
   font-size: ${({ theme }) => theme.font.size['2xl']};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
-  color: ${({ theme }) => theme.colors.accentLabel};
+  color: ${({ theme }) => theme.colors.accent.primary};
 `;
 
 const ColorGrid = styled.div`
@@ -70,14 +70,14 @@ const SwatchBox = styled.div<{ $color: string }>`
   width: 100%;
   height: 3rem;
   background: ${({ $color }) => $color};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: 1px solid ${({ theme }) => theme.colors.neutral.black};
   border-radius: 0.5rem;
 `;
 
 const SwatchLabel = styled.span`
   font-family: ${({ theme }) => theme.font.family.mono};
   font-size: ${({ theme }) => theme.font.size.xs};
-  color: ${({ theme }) => theme.colors.textMuted};
+  color: ${({ theme }) => theme.colors.neutral.grey};
 `;
 
 const TypographySample = styled.div`
@@ -91,33 +91,19 @@ const Badge = styled.span`
   padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[3]}`};
   font-family: ${({ theme }) => theme.font.family.mono};
   font-size: ${({ theme }) => theme.font.size.sm};
-  color: ${({ theme }) => theme.colors.accentText};
-  background: ${({ theme }) => theme.colors.brandSubtle};
+  color: ${({ theme }) => theme.colors.main.primary};
+  background: ${({ theme }) => theme.colors.neutral.grey};
   border-radius: 0.375rem;
 `;
 
 const EnvBadge = styled(Badge)`
-  color: ${({ theme }) => theme.colors.textPrimary};
-  background: ${({ theme }) => theme.colors.brand};
+  color: ${({ theme }) => theme.colors.neutral.white};
+  background: ${({ theme }) => theme.colors.accent.primary};
 `;
-
-interface PaletteEntry {
-  label: string;
-  value: string;
-}
-
-function getPaletteEntries(
-  palette: Record<number, string>,
-  prefix: string
-): PaletteEntry[] {
-  return Object.entries(palette).map(([step, value]) => ({
-    label: `${prefix}.${step}`,
-    value,
-  }));
-}
 
 function _TestPage() {
   const env = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'unknown';
+  const theme = useTheme();
 
   return (
     <Page>
@@ -130,108 +116,70 @@ function _TestPage() {
       </div>
 
       <Section>
-        <SectionTitle>Primary Palette</SectionTitle>
+        <SectionTitle>Main Palette</SectionTitle>
         <ColorGrid>
-          {getPaletteEntries(
-            {
-              50: 'oklch(0.98 0.01 308)',
-              100: 'oklch(0.90 0.06 307)',
-              200: 'oklch(0.83 0.11 306)',
-              300: 'oklch(0.72 0.18 306)',
-              400: 'oklch(0.63 0.23 304)',
-              500: 'oklch(0.54 0.25 293)',
-              600: 'oklch(0.49 0.24 293)',
-              700: 'oklch(0.43 0.21 293)',
-              800: 'oklch(0.38 0.18 294)',
-              900: 'oklch(0.29 0.14 303)',
-              950: 'oklch(0.28 0.14 291)',
-            },
-            'primary'
-          ).map(({ label, value }) => (
-            <ColorSwatch key={label} $color={value}>
-              <SwatchBox $color={value} />
-              <SwatchLabel>{label}</SwatchLabel>
-            </ColorSwatch>
-          ))}
-        </ColorGrid>
-      </Section>
-
-      <Section>
-        <SectionTitle>Neutral Palette</SectionTitle>
-        <ColorGrid>
-          {getPaletteEntries(
-            {
-              50: 'oklch(0.98 0.009 286)',
-              100: 'oklch(0.91 0.02 286)',
-              200: 'oklch(0.82 0.03 286)',
-              300: 'oklch(0.74 0.03 286)',
-              400: 'oklch(0.64 0.05 285)',
-              500: 'oklch(0.49 0.04 285)',
-              600: 'oklch(0.30 0.05 283)',
-              700: 'oklch(0.23 0.04 283)',
-              800: 'oklch(0.19 0.02 284)',
-              900: 'oklch(0.17 0.02 284)',
-              950: 'oklch(0.14 0.02 284)',
-            },
-            'neutral'
-          ).map(({ label, value }) => (
-            <ColorSwatch key={label} $color={value}>
-              <SwatchBox $color={value} />
-              <SwatchLabel>{label}</SwatchLabel>
-            </ColorSwatch>
-          ))}
+          <ColorSwatch key="primary" $color={theme.colors.main.primary}>
+            <SwatchBox $color={theme.colors.main.primary} />
+            <SwatchLabel>primary</SwatchLabel>
+          </ColorSwatch>
         </ColorGrid>
       </Section>
 
       <Section>
         <SectionTitle>Accent Palette</SectionTitle>
         <ColorGrid>
-          {getPaletteEntries(
-            {
-              50: 'oklch(0.98 0.02 201)',
-              100: 'oklch(0.96 0.04 203)',
-              200: 'oklch(0.92 0.08 205)',
-              300: 'oklch(0.87 0.12 207)',
-              400: 'oklch(0.80 0.13 212)',
-              500: 'oklch(0.71 0.13 215)',
-              600: 'oklch(0.61 0.11 222)',
-              700: 'oklch(0.52 0.09 223)',
-              800: 'oklch(0.45 0.08 224)',
-              900: 'oklch(0.40 0.07 227)',
-              950: 'oklch(0.30 0.05 230)',
-            },
-            'accent'
-          ).map(({ label, value }) => (
-            <ColorSwatch key={label} $color={value}>
-              <SwatchBox $color={value} />
-              <SwatchLabel>{label}</SwatchLabel>
-            </ColorSwatch>
-          ))}
+          <ColorSwatch key="primary" $color={theme.colors.accent.primary}>
+            <SwatchBox $color={theme.colors.accent.primary} />
+            <SwatchLabel>primary</SwatchLabel>
+          </ColorSwatch>
         </ColorGrid>
       </Section>
 
       <Section>
-        <SectionTitle>Semantic Colors</SectionTitle>
+        <SectionTitle>Neutral Palette</SectionTitle>
         <ColorGrid>
-          {[
-            { label: 'background', value: 'oklch(0.14 0.02 284)' },
-            { label: 'surface', value: 'oklch(0.17 0.02 284)' },
-            { label: 'surfaceHover', value: 'oklch(0.19 0.02 284)' },
-            { label: 'border', value: 'oklch(0.23 0.04 283)' },
-            { label: 'textPrimary', value: 'oklch(0.98 0.009 286)' },
-            { label: 'textSecondary', value: 'oklch(0.74 0.03 286)' },
-            { label: 'textMuted', value: 'oklch(0.49 0.04 285)' },
-            { label: 'brand', value: 'oklch(0.54 0.25 293)' },
-            { label: 'brandHover', value: 'oklch(0.63 0.23 304)' },
-            { label: 'brandSubtle', value: 'oklch(0.28 0.14 291)' },
-            { label: 'accentLabel', value: 'oklch(0.80 0.13 212)' },
-            { label: 'accentText', value: 'oklch(0.87 0.12 207)' },
-          ].map(({ label, value }) => (
-            <ColorSwatch key={label} $color={value}>
-              <SwatchBox $color={value} />
-              <SwatchLabel>{label}</SwatchLabel>
-            </ColorSwatch>
-          ))}
+          <ColorSwatch key="bg" $color={theme.colors.neutral.bg}>
+            <SwatchBox $color={theme.colors.neutral.bg} />
+            <SwatchLabel>bg</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="white" $color={theme.colors.neutral.white}>
+            <SwatchBox $color={theme.colors.neutral.white} />
+            <SwatchLabel>white</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="black" $color={theme.colors.neutral.black}>
+            <SwatchBox $color={theme.colors.neutral.black} />
+            <SwatchLabel>black</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="grey" $color={theme.colors.neutral.grey}>
+            <SwatchBox $color={theme.colors.neutral.grey} />
+            <SwatchLabel>grey</SwatchLabel>
+          </ColorSwatch>
+        </ColorGrid>
+      </Section>
+
+      <Section>
+        <SectionTitle>Support Colors</SectionTitle>
+        <ColorGrid>
+          <ColorSwatch key="danger" $color={theme.colors.support.danger}>
+            <SwatchBox $color={theme.colors.support.danger} />
+            <SwatchLabel>danger</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="error" $color={theme.colors.support.error}>
+            <SwatchBox $color={theme.colors.support.error} />
+            <SwatchLabel>error</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="warning" $color={theme.colors.support.warning}>
+            <SwatchBox $color={theme.colors.support.warning} />
+            <SwatchLabel>warning</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="success" $color={theme.colors.support.success}>
+            <SwatchBox $color={theme.colors.support.success} />
+            <SwatchLabel>success</SwatchLabel>
+          </ColorSwatch>
+          <ColorSwatch key="info" $color={theme.colors.support.info}>
+            <SwatchBox $color={theme.colors.support.info} />
+            <SwatchLabel>info</SwatchLabel>
+          </ColorSwatch>
         </ColorGrid>
       </Section>
 
@@ -276,18 +224,18 @@ function _TestPage() {
         <div
           style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
         >
-          {[1, 2, 3, 4, 6, 8, 12, 16, 24, 32].map((step) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((step) => {
             const values: Record<number, string> = {
               1: '0.25rem',
               2: '0.5rem',
               3: '0.75rem',
               4: '1rem',
-              6: '1.5rem',
-              8: '2rem',
-              12: '3rem',
-              16: '4rem',
-              24: '6rem',
-              32: '8rem',
+              5: '1.5rem',
+              6: '2rem',
+              7: '3rem',
+              8: '4rem',
+              9: '6rem',
+              10: '8rem',
             };
             return (
               <div
@@ -301,7 +249,7 @@ function _TestPage() {
                   style={{
                     width: values[step],
                     height: '1rem',
-                    background: 'oklch(0.54 0.25 293)',
+                    background: theme.colors.main.primary,
                     borderRadius: '0.25rem',
                   }}
                 />
@@ -504,23 +452,20 @@ function _TestPage() {
         <div
           style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
         >
-          <Text as="p" size="base" color="textPrimary">
-            textPrimary
+          <Text as="p" size="base" color="main.primary">
+            main.primary
           </Text>
-          <Text as="p" size="base" color="textSecondary">
-            textSecondary
+          <Text as="p" size="base" color="accent.primary">
+            accent.primary
           </Text>
-          <Text as="p" size="base" color="textMuted">
-            textMuted
+          <Text as="p" size="base" color="neutral.grey">
+            neutral.grey
           </Text>
-          <Text as="p" size="base" color="brand">
-            brand
+          <Text as="p" size="base" color="neutral.white">
+            neutral.white
           </Text>
-          <Text as="p" size="base" color="accentText">
-            accentText
-          </Text>
-          <Text as="p" size="base" color="accentLabel">
-            accentLabel
+          <Text as="p" size="base" color="neutral.black">
+            neutral.black
           </Text>
         </div>
       </Section>

@@ -11,14 +11,14 @@ const Eyebrow = styled.span`
   font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.lineHeight.snug};
-  color: ${({ theme }) => theme.colors.primary[500]};
+  color: ${({ theme }) => theme.colors.main.primary};
 `;
 
 const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size['3xl']};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.lineHeight.normal};
-  color: ${({ theme }) => theme.colors.primary[50]};
+  color: ${({ theme }) => theme.colors.neutral.white};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     font-size: ${({ theme }) => theme.font.size['4xl']};
@@ -30,7 +30,7 @@ const Subtitle = styled.p`
   font-size: ${({ theme }) => theme.font.size.lg};
   font-weight: ${({ theme }) => theme.font.weight.normal};
   line-height: ${({ theme }) => theme.font.lineHeight.relaxed};
-  color: ${({ theme }) => theme.colors.neutral[500]};
+  color: ${({ theme }) => theme.colors.neutral.grey};
 `;
 
 interface TitleSubtitleEyebrowProps {

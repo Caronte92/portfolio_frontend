@@ -4,14 +4,15 @@ import { IIconParams } from '@/lib/types/IIconParams';
 const IconLogo = React.forwardRef<SVGSVGElement, IIconParams>(
   (
     {
-      size = '90px',
+      size = '32px',
       color,
-      disableFill = true,
+      disableFill = false,
       removeInlineStyle = false,
       transform,
       style,
       className,
-      viewBox = '0 0 80 80',
+      stroke = 'none',
+      viewBox = '0 0 32 32',
       ariaLabel = 'icon',
     },
     ref
@@ -36,83 +37,22 @@ const IconLogo = React.forwardRef<SVGSVGElement, IIconParams>(
         viewBox={viewBox}
         style={removeInlineStyle ? undefined : mergedStyle}
       >
-        <defs>
-          <linearGradient
-            id="gGlow2"
-            x1="0"
-            y1="0"
-            x2="80"
-            y2="80"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#22d3ee" />
-          </linearGradient>
-          <filter id="glow2">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
         <path
-          d="M28 4 L52 4 L76 28 L76 52 L52 76 L28 76 L4 52 L4 28 Z"
-          fill="rgba(124,58,237,0.12)"
-          stroke="url(#gGlow2)"
-          strokeWidth="1.5"
-        />
-        <path
-          d="M30 12 L50 12 L68 30 L68 50 L50 68 L30 68 L12 50 L12 30 Z"
-          fill="none"
-          stroke="url(#gGlow2)"
-          strokeWidth="0.7"
-          opacity="0.35"
-        />
-        <circle cx="28" cy="4" r="2.5" fill="#a855f7" filter="url(#glow2)" />
-        <circle cx="52" cy="4" r="2.5" fill="#22d3ee" filter="url(#glow2)" />
-        <circle cx="76" cy="28" r="2.5" fill="#a855f7" filter="url(#glow2)" />
-        <circle cx="76" cy="52" r="2.5" fill="#22d3ee" filter="url(#glow2)" />
-        <circle cx="52" cy="76" r="2.5" fill="#a855f7" filter="url(#glow2)" />
-        <circle cx="28" cy="76" r="2.5" fill="#22d3ee" filter="url(#glow2)" />
-        <circle cx="4" cy="52" r="2.5" fill="#a855f7" filter="url(#glow2)" />
-        <circle cx="4" cy="28" r="2.5" fill="#22d3ee" filter="url(#glow2)" />
-        <path
-          d="M29 28 L51 28"
-          stroke="url(#gGlow2)"
-          strokeWidth="3.5"
+          d="M22.5 17.1193L9.5 11.0333V8.05848L22.5 1.97247V4.86537L11.7973 9.50493L22.5 14.1991V17.1193Z"
+          fill="#22D3EE"
+          stroke={stroke}
+          strokeWidth="2"
           strokeLinecap="round"
-          filter="url(#glow2)"
+          strokeLinejoin="round"
         />
         <path
-          d="M29 28 L29 40"
-          stroke="url(#gGlow2)"
-          strokeWidth="3.5"
+          d="M9.5 30.0275L22.5 24.0374V21.1094L9.5 15.1193V17.9666L20.2027 22.5331L9.5 27.1533V30.0275Z"
+          fill="#22D3EE"
+          stroke={stroke}
+          strokeWidth="2"
           strokeLinecap="round"
-          filter="url(#glow2)"
+          strokeLinejoin="round"
         />
-        <path
-          d="M29 40 L51 40"
-          stroke="url(#gGlow2)"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          filter="url(#glow2)"
-        />
-        <path
-          d="M51 40 L51 52"
-          stroke="url(#gGlow2)"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          filter="url(#glow2)"
-        />
-        <path
-          d="M29 52 L51 52"
-          stroke="url(#gGlow2)"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          filter="url(#glow2)"
-        />
-        <circle cx="54" cy="25" r="3.5" fill="#e9d5ff" filter="url(#glow2)" />
       </svg>
     );
   }

@@ -18,7 +18,9 @@ const StyledLink = styled.a<StyledProps>`
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.lineHeight.normal};
   color: ${({ theme, $variant }) =>
-    $variant === 'primary' ? theme.colors.brand : theme.colors.textMuted};
+    $variant === 'primary'
+      ? theme.colors.main.primary
+      : theme.colors.neutral.grey};
   text-decoration: none;
   cursor: pointer;
   background: none;
@@ -28,8 +30,8 @@ const StyledLink = styled.a<StyledProps>`
   &:hover {
     color: ${({ theme, $variant }) =>
       $variant === 'primary'
-        ? theme.colors.brandHover
-        : theme.colors.textSecondary};
+        ? theme.colors.main.hover
+        : theme.colors.neutral.white};
     text-decoration: underline;
   }
 

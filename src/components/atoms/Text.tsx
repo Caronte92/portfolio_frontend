@@ -7,11 +7,19 @@ import type { ITheme } from '@/styles/theme';
 type TextSize = keyof ITheme['font']['size'];
 type TextWeight = keyof ITheme['font']['weight'];
 type TextLineHeight = keyof ITheme['font']['lineHeight'];
-type TextColor = keyof {
-  [K in keyof ITheme['colors'] as ITheme['colors'][K] extends string
-    ? K
-    : never]: true;
-};
+// --- Paths válidos para colores del theme (autocompletado y chequeo de tipos seguro) ---
+type TextColor =
+  | 'main.primary'
+  | 'accent.primary'
+  | 'neutral.bg'
+  | 'neutral.white'
+  | 'neutral.black'
+  | 'neutral.grey'
+  | 'support.danger'
+  | 'support.error'
+  | 'support.warning'
+  | 'support.success'
+  | 'support.info';
 type TextAlign = 'left' | 'center' | 'right';
 type TextTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
 
@@ -24,13 +32,18 @@ interface StyledProps {
   $truncate?: boolean;
 }
 
+// Utilidad para resolver un path tipo 'main.primary' en el objeto de colores del theme
+function getThemeColor(theme: any, path: string) {
+  return path.split('.').reduce((acc, key) => acc?.[key], theme.colors);
+}
+
 const StyledText = styled.span<StyledProps>`
   font-family: ${({ theme }) => theme.font.family.sans};
   font-size: ${({ theme, $size }) => theme.font.size[$size]};
   font-weight: ${({ theme, $weight }) => theme.font.weight[$weight]};
   line-height: ${({ theme, $lineHeight }) =>
     theme.font.lineHeight[$lineHeight]};
-  color: ${({ theme, $color }) => theme.colors[$color] as string};
+  color: ${({ theme, $color }) => getThemeColor(theme, $color)};
   text-align: ${({ $align }) => $align ?? 'inherit'};
 
   ${({ $truncate }) =>
@@ -61,7 +74,7 @@ const _Text = ({
   size = 'base',
   weight = 'normal',
   lineHeight = 'normal',
-  color = 'textPrimary',
+  color = 'main.primary',
   align,
   truncate,
   className,

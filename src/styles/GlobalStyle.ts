@@ -26,8 +26,8 @@ export const GlobalStyle = createGlobalStyle`
     line-height: ${({ theme }) => theme.font.lineHeight.normal};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: ${({ theme }) => theme.colors.textPrimary};
-    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.neutral.white};
+    background: ${({ theme }) => theme.colors.neutral.bg};
   }
 
   /* 5. Media elements defaults */

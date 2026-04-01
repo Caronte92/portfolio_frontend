@@ -9,6 +9,7 @@ type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 interface StyledProps {
   $variant: ButtonVariant;
   $size: ButtonSize;
+  $fullWidth?: boolean;
 }
 
 const StyledButton = styled.button<StyledProps>`
@@ -16,6 +17,7 @@ const StyledButton = styled.button<StyledProps>`
   gap: ${({ theme, $size }) => theme.components.button.sizes[$size].gap};
   align-items: center;
   justify-content: center;
+  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
   padding: ${({ theme, $size }) => {
     const s = theme.components.button.sizes[$size];
     return `${s.paddingY} ${s.paddingX}`;
@@ -86,7 +88,7 @@ const StyledButton = styled.button<StyledProps>`
         left: 0;
         width: 0;
         height: 1px;
-        background: ${theme.colors.brand};
+        background: ${theme.colors.main.primary};
         transition: width 0.3s ease;
       }
     `}
@@ -99,6 +101,7 @@ export interface ButtonProps extends Omit<
   text?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  fullWidth?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   href?: string;
@@ -110,6 +113,7 @@ const _Button = ({
   text,
   variant = 'primary',
   size = 'md',
+  fullWidth = false,
   iconLeft,
   iconRight,
   href,
@@ -135,6 +139,7 @@ const _Button = ({
     <StyledButton
       $variant={variant}
       $size={size}
+      $fullWidth={fullWidth}
       onClick={handleClick}
       {...rest}
       {...(href

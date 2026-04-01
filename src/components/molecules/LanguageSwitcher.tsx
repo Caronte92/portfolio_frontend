@@ -27,7 +27,6 @@ const _LanguageSwitcher = () => {
     [pathname, router]
   );
 
-  // Icon only in trigger, not in options
   return (
     <Dropdown
       options={OPTIONS}

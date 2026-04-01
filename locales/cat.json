@@ -8,9 +8,9 @@
     "nav_section_contact": "Contacte"
   },
   "Hero": {
-    "eyebrow": "Senior Web Developer · Next.js & .NET",
-    "title": "Sergi Mitjavila del Amo",
-    "subtitle": "Vaig créixer dins d'una empresa des de les pràctiques — i això em va donar una visió completa del cicle de vida d'un producte digital. Avui construeixo interfícies amb Next.js i .NET, amb focus en rendiment, accessibilitat i codi que escala. M'importa fer les coses ben fetes: des de l'arquitectura fins al detall visual.",
+    "eyebrow": "Next.js & React, .NET Core, TypeScript",
+    "title": "Hola! Sóc Sergi Mitjavila, Desenvolupador Fullstack Senior",
+    "subtitle": "M'especialitzo en tot el procés, des de l'arquitectura neta de components fins a la integració sòlida d'API amb focus en rendiment i codi mantenible.",
     "button_work": "Veure el Meu Treball",
     "button_talk": "Parlem"
   }

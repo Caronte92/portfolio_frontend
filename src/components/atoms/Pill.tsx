@@ -33,19 +33,19 @@ const StyledPill = styled.span<StyledProps>`
   line-height: ${({ theme }) => theme.font.lineHeight.normal};
   color: ${({ theme, $variant }) =>
     $variant === 'solid'
-      ? theme.colors.textPrimary
-      : theme.colors.textSecondary};
+      ? theme.colors.neutral.white
+      : theme.colors.neutral.grey};
   white-space: nowrap;
   user-select: none;
   background: ${({ theme, $variant }) =>
     $variant === 'solid'
-      ? theme.colors.brand
+      ? theme.colors.main.primary
       : $variant === 'subtle'
-        ? theme.colors.brandSubtle
+        ? theme.colors.accent.primary
         : 'transparent'};
   border: 1px solid
     ${({ theme, $variant }) =>
-      $variant === 'outline' ? theme.colors.border : 'transparent'};
+      $variant === 'outline' ? theme.colors.neutral.grey : 'transparent'};
   border-radius: 9999px;
 
   svg {
