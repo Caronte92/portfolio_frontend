@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { Button } from '@/components/atoms';
+import { ButtonLink } from '@/components/atoms';
 import GitHubIcon from '@/components/atoms/icons/github.svg';
 import LinkedInIcon from '@/components/atoms/icons/linkedin.svg';
 
@@ -94,7 +94,7 @@ const CTAWrapper = styled.div`
   gap: ${({ theme }) => theme.spacing[4]};
   align-items: center;
 
-  & > button {
+  & > a:first-child {
     width: 100%;
   }
 
@@ -102,7 +102,7 @@ const CTAWrapper = styled.div`
     flex-direction: row;
     align-items: center;
 
-    & > button {
+    & > a:first-child {
       width: auto;
     }
   }
@@ -119,14 +119,16 @@ function _Hero() {
           <Title>{t('title')}</Title>
           <Subtitle>{t('subtitle')}</Subtitle>
           <CTAWrapper>
-            <Button
+            <ButtonLink
               variant="primary"
               size="md"
               text={t('button_talk')}
-              href="mailto:smitjavilada@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&to=smitjavilada@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
             />
             <ButtonsWrapper>
-              <Button
+              <ButtonLink
                 variant="ghost"
                 size="md"
                 text="Github"
@@ -138,7 +140,7 @@ function _Hero() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               />
-              <Button
+              <ButtonLink
                 variant="ghost"
                 size="md"
                 text="Linkedin"
