@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Work_Sans } from 'next/font/google';
 import BaseLayout from '@/layouts/base';
+import StyledComponentsRegistry from '@/styles/StyledComponentsRegistry';
 
 const workSans = Work_Sans({
   subsets: ['latin'],
@@ -23,7 +24,9 @@ export default async function RootLayout({ children, params }: ILayoutProps) {
     <html lang={lang} className={workSans.variable}>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <BaseLayout>{children}</BaseLayout>
+          <StyledComponentsRegistry>
+            <BaseLayout>{children}</BaseLayout>
+          </StyledComponentsRegistry>
         </NextIntlClientProvider>
       </body>
     </html>

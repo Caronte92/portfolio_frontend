@@ -34,6 +34,7 @@ export const GlobalStyle = createGlobalStyle`
   img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
+    height: auto;
   }
 
   /* 6. Inherit fonts for form elements */
