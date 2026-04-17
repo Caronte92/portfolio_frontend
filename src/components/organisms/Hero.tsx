@@ -61,21 +61,21 @@ const Eyebrow = styled.span`
   font-size: ${({ theme }) => theme.font.size.sm};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.lineHeight.snug};
-  color: ${({ theme }) => theme.colors.main.primary};
+  color: ${({ theme }) => theme.font.colors.eyebrow};
 `;
 
 const Title = styled.h1`
   font-size: ${({ theme }) => theme.font.size['4xl']};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.lineHeight.normal};
-  color: ${({ theme }) => theme.colors.neutral.white};
+  color: ${({ theme }) => theme.font.colors.title};
 `;
 
 const Subtitle = styled.h2`
   font-size: ${({ theme }) => theme.font.size.lg};
   font-weight: ${({ theme }) => theme.font.weight.normal};
   line-height: ${({ theme }) => theme.font.lineHeight.relaxed};
-  color: ${({ theme }) => theme.colors.neutral.grey};
+  color: ${({ theme }) => theme.font.colors.subtitle};
 `;
 
 const ButtonsWrapper = styled.div`

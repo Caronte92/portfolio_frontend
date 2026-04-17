@@ -1,3 +1,5 @@
+import { colors } from '@/styles/colors';
+
 export const font = {
   family: {
     sans: "var(--font-work-sans), 'Work Sans', system-ui, -apple-system, sans-serif",
@@ -27,5 +29,10 @@ export const font = {
     snug: 1.3,
     normal: 1.5,
     relaxed: 1.75,
+  },
+  colors: {
+    eyebrow: colors.main.primary,
+    title: colors.neutral.white,
+    subtitle: colors.neutral.grey,
   },
 } as const;
