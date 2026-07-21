@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
@@ -10,6 +10,7 @@ interface IProps {
 
 export default function StyledComponentsRegistry({ children }: IProps) {
   const [sheet] = useState(() => new ServerStyleSheet());
+  const [isMounted, setIsMounted] = useState(false);
 
   useServerInsertedHTML(() => {
     const styles = sheet.getStyleElement();
@@ -17,7 +18,11 @@ export default function StyledComponentsRegistry({ children }: IProps) {
     return <>{styles}</>;
   });
 
-  if (typeof window !== 'undefined') return <>{children}</>;
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (isMounted) return <>{children}</>;
 
   return (
     <StyleSheetManager sheet={sheet.instance}>{children}</StyleSheetManager>
