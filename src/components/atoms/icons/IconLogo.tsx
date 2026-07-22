@@ -38,7 +38,7 @@ const IconLogo = React.forwardRef<SVGSVGElement, IIconParams>(
         style={removeInlineStyle ? undefined : mergedStyle}
       >
         <path
-          d="M22.5 17.1193L9.5 11.0333V8.05848L22.5 1.97247V4.86537L11.7973 9.50493L22.5 14.1991V17.1193Z"
+          d="M22.5 17.12L9.5 11.03V8.06L22.5 1.97V4.87L11.8 9.5L22.5 14.2V17.12Z"
           fill="#22D3EE"
           stroke={stroke}
           strokeWidth="2"
@@ -46,7 +46,7 @@ const IconLogo = React.forwardRef<SVGSVGElement, IIconParams>(
           strokeLinejoin="round"
         />
         <path
-          d="M9.5 30.0275L22.5 24.0374V21.1094L9.5 15.1193V17.9666L20.2027 22.5331L9.5 27.1533V30.0275Z"
+          d="M9.5 30.03L22.5 24.04V21.11L9.5 15.12V17.97L20.2 22.53L9.5 27.15V30.03Z"
           fill="#22D3EE"
           stroke={stroke}
           strokeWidth="2"

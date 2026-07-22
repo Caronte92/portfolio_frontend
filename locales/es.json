@@ -1,4 +1,8 @@
 {
+  "Metadata": {
+    "title": "Sergi Mitjavila — Desarrollador Fullstack Senior",
+    "description": "Full Stack Developer con 6 años de experiencia en .NET Core, React, Next.js y TypeScript, especializado en clean code y arquitectura escalable."
+  },
   "Header": {
     "button_contact": "Hablemos",
     "nav_section_about": "Acerca de",
