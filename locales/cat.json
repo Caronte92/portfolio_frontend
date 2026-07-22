@@ -7,6 +7,9 @@
     "nav_section_experience": "Experiència",
     "nav_section_contact": "Contacte"
   },
+  "Footer": {
+    "built_with": "Fet amb Next.js"
+  },
   "Hero": {
     "eyebrow": "Next.js & React, .NET Core, TypeScript",
     "title": "Hola! Sóc Sergi Mitjavila, Desenvolupador Fullstack Senior",

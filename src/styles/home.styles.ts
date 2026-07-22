@@ -7,7 +7,6 @@ export const Page = styled.div`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[6]};
   max-width: 90rem;
-  min-height: 100vh;
 
   /* prettier-ignore */
   padding: 10.4375rem ${({ theme }) => theme.spacing[6]} ${({ theme }) =>

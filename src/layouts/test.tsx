@@ -4,7 +4,6 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
 import { LanguageSwitcher } from '@/components/molecules';
-import BaseLayout from '@/layouts/base';
 import { Page } from '@/styles/home.styles';
 
 const DEMO_OPTIONS = [
@@ -542,9 +541,5 @@ function _TestPage() {
 const TestPageMemo = React.memo(_TestPage);
 
 export default function TestPage() {
-  return (
-    <BaseLayout>
-      <TestPageMemo />
-    </BaseLayout>
-  );
+  return <TestPageMemo />;
 }

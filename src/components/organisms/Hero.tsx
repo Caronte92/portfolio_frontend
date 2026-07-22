@@ -11,7 +11,6 @@ const Container = styled.section`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[5]};
   max-width: 75rem;
-  min-height: 77dvh;
   margin: 0 auto;
 `;
 

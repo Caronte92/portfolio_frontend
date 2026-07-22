@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Hero } from '@/components/organisms';
-import BaseLayout from '@/layouts/base';
 import { Page } from '../styles/home.styles';
 
 function _Home() {
@@ -16,9 +15,5 @@ function _Home() {
 const HomeMemo = React.memo(_Home);
 
 export default function Home() {
-  return (
-    <BaseLayout>
-      <HomeMemo />
-    </BaseLayout>
-  );
+  return <HomeMemo />;
 }

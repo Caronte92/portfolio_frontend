@@ -1,22 +1,37 @@
 'use client';
 
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Header } from '@/components/organisms';
+import { Footer } from '@/components/organisms/Footer';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { theme } from '@/styles/theme';
 
 interface IBaseProps {
   hideHeader?: boolean;
+  hideFooter?: boolean;
   children: React.ReactNode;
 }
+
+const Shell = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+`;
+
+const Content = styled.div`
+  flex: 1;
+`;
 
 export default function BaseLayout({ ...props }: IBaseProps) {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {!props.hideHeader && <Header />}
-      {props.children}
+      <Shell>
+        {!props.hideHeader && <Header />}
+        <Content>{props.children}</Content>
+        {!props.hideFooter && <Footer />}
+      </Shell>
     </ThemeProvider>
   );
 }
