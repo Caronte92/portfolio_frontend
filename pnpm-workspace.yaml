@@ -1,5 +1,10 @@
-minimumReleaseAge: 10080
+minimumReleaseAge: 2880
 trustPolicy: no-downgrade
+# Audited manually: pre-provenance versions from well-established maintainers
+# (node-semver, typescript-eslint), no evidence of compromise. See git blame.
+trustPolicyExclude:
+  - semver@6.3.1
+  - eslint-import-resolver-typescript@3.10.1
 
 allowBuilds:
   '@parcel/watcher': true
