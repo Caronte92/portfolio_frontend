@@ -162,8 +162,8 @@ function _Hero() {
         <HeroImage
           src="/hero/me.webp"
           alt="Hero illustration"
-          width={320}
-          height={320}
+          width={261}
+          height={405}
           priority
         />
       </InfoWrapper>
