@@ -19,7 +19,9 @@ function _Footer() {
       <Text size="sm" color="neutral.grey">
         © 2026 Sergi Mitjavila
       </Text>
-      <Text size="sm">{t('built_with')}</Text>
+      <Text size="sm" color="neutral.grey">
+        {t('built_with')}
+      </Text>
     </Container>
   );
 }
