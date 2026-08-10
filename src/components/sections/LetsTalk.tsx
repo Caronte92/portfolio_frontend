@@ -20,6 +20,11 @@ const InfoContainer = styled.div`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  text-align: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    text-align: left;
+  }
 `;
 
 const Title = styled.h3`
@@ -27,6 +32,11 @@ const Title = styled.h3`
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.size.display.lineHeight};
   color: ${({ theme }) => theme.colors.text.primary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.h2.fontSize};
+    line-height: ${({ theme }) => theme.font.size.h2.lineHeight};
+  }
 `;
 
 const SubTitle = styled.p`
@@ -34,12 +44,28 @@ const SubTitle = styled.p`
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.size.body.lineHeight};
   color: ${({ theme }) => theme.colors.text.secondary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
+    line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
+  }
 `;
 
 const CTAsContainer = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: center;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+  }
+`;
+
+const SocialsWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 
 function _LetsTalk() {
@@ -60,24 +86,26 @@ function _LetsTalk() {
             target="_blank"
             rel="noopener noreferrer"
           />
-          <Button
-            text="Github"
-            variant="ghost"
-            iconLeft={<IconGitHub size="24px" />}
-            href="https://github.com/Caronte92/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          />
-          <Button
-            text="Linkedin"
-            variant="ghost"
-            iconLeft={<IconLinkedinLogo size="24px" />}
-            href="https://www.linkedin.com/in/sergi-mitjavila"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          />
+          <SocialsWrapper>
+            <Button
+              text="Github"
+              variant="ghost"
+              iconLeft={<IconGitHub size="24px" />}
+              href="https://github.com/Caronte92/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            />
+            <Button
+              text="Linkedin"
+              variant="ghost"
+              iconLeft={<IconLinkedinLogo size="24px" />}
+              href="https://www.linkedin.com/in/sergi-mitjavila"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            />
+          </SocialsWrapper>
         </CTAsContainer>
       </Container>
     </SectionContainer>

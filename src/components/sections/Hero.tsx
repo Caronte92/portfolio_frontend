@@ -10,7 +10,7 @@ const InfoWrapper = styled.div`
   gap: ${({ theme }) => theme.spacing[24]};
   align-items: center;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -41,7 +41,6 @@ const HeroWrapper = styled.div`
   gap: ${({ theme }) => theme.spacing[20]};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    width: 60%;
     text-align: left;
   }
 `;
@@ -51,6 +50,11 @@ const Eyebrow = styled.span`
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
   color: ${({ theme }) => theme.colors.accent.cyan};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.tag.fontSize};
+    line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
+  }
 `;
 
 const Title = styled.h1`
@@ -58,6 +62,11 @@ const Title = styled.h1`
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.size.h1.lineHeight};
   color: ${({ theme }) => theme.colors.text.primary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.h2.fontSize};
+    line-height: ${({ theme }) => theme.font.size.h2.lineHeight};
+  }
 `;
 
 const Subtitle = styled.h2`
@@ -65,6 +74,11 @@ const Subtitle = styled.h2`
   font-weight: ${({ theme }) => theme.font.weight.normal};
   line-height: ${({ theme }) => theme.font.size.bodyLarge.lineHeight};
   color: ${({ theme }) => theme.colors.text.secondary};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    font-size: ${({ theme }) => theme.font.size.body.fontSize};
+    line-height: ${({ theme }) => theme.font.size.body.lineHeight};
+  }
 `;
 
 function _Hero() {

@@ -44,4 +44,12 @@ export const SectionContainer = styled.section`
   gap: ${({ theme }) => theme.spacing[20]};
   max-width: 75rem;
   margin: 5rem auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 5rem 3rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    margin: 3rem 1.25rem;
+  }
 `;
