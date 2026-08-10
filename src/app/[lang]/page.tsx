@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import HomeMemo from '@/layouts/home';
+import { SITE_URL } from '@/lib/config';
 import { hreflangByLocale, i18n } from '../../../i18n-config';
 
 interface IHomePageProps {
@@ -12,17 +13,16 @@ export async function generateMetadata({
 }: IHomePageProps): Promise<Metadata> {
   const { lang } = await params;
   const t = await getTranslations({ locale: lang, namespace: 'Metadata' });
-  const baseUrl = process.env.NEXT_PUBLIC_FRONT_URL;
 
   return {
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: `${baseUrl}/${lang}`,
+      canonical: `${SITE_URL}/${lang}`,
       languages: Object.fromEntries(
         i18n.locales.map((locale) => [
           hreflangByLocale[locale],
-          `${baseUrl}/${locale}`,
+          `${SITE_URL}/${locale}`,
         ])
       ),
     },
@@ -31,7 +31,7 @@ export async function generateMetadata({
       description: t('description'),
       images: [
         {
-          url: `${baseUrl}/profile.png`,
+          url: `${SITE_URL}/profile.png`,
           width: 282,
           height: 282,
         },

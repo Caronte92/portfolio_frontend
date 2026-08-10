@@ -1,7 +1,9 @@
+import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Work_Sans } from 'next/font/google';
 import BaseLayout from '@/layouts/base';
+import { SITE_URL } from '@/lib/config';
 import StyledComponentsRegistry from '@/styles/StyledComponentsRegistry';
 
 const workSans = Work_Sans({
@@ -10,6 +12,10 @@ const workSans = Work_Sans({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   variable: '--font-work-sans',
 });
+
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+};
 
 interface ILayoutProps {
   params: Promise<{ lang: string }>;
