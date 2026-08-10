@@ -2,8 +2,8 @@
 
 import React, { useCallback } from 'react';
 import { useParams, useRouter, usePathname } from 'next/navigation';
-import { Dropdown, type DropdownOption } from '@/components/atoms';
 import { IconLanguage } from '@/components/atoms/icons';
+import { DropdownOption, Dropdown } from '@/components/molecules/Dropdown';
 import type { Locale } from '../../../i18n-config';
 
 const OPTIONS: DropdownOption[] = [

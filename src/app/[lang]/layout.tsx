@@ -22,7 +22,7 @@ export default async function RootLayout({ children, params }: ILayoutProps) {
 
   return (
     <html lang={lang} className={workSans.variable}>
-      <body>
+      <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <StyledComponentsRegistry>
             <BaseLayout>{children}</BaseLayout>

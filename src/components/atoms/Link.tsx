@@ -14,9 +14,9 @@ const StyledLink = styled.a<StyledProps>`
   gap: 0.5rem;
   align-items: center;
   font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme }) => theme.font.size.sm};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  line-height: ${({ theme }) => theme.font.lineHeight.normal};
+  line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
   color: ${({ theme, $variant }) =>
     $variant === 'primary'
       ? theme.colors.main.primary

@@ -2,9 +2,67 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import { colors } from '@/styles/colors';
 
-type ButtonVariant = 'primary' | 'ghost' | 'link';
+type ButtonVariant = 'primary' | 'ghost';
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
+
+export const ButtonType = {
+  primary: {
+    neutral: {
+      background: colors.accent.cyan,
+      color: colors.text.dark,
+      border: colors.accent.cyan,
+    },
+    hover: {
+      background: `oklch(0.7214 0.1251 215.32)`,
+      color: colors.text.dark,
+      border: `oklch(0.7214 0.1251 215.32)`,
+    },
+    focus: {
+      background: `oklch(0.7971 0.1339 211.53)`,
+      color: colors.text.muted,
+      border: `oklch(0.7971 0.1339 211.53)`,
+    },
+    active: {
+      background: `oklch(0.6465 0.1148 218.71)`,
+      color: colors.text.muted,
+      border: `oklch(0.6465 0.1148 218.71)`,
+    },
+    disabled: {
+      background: colors.accent.cyan,
+      color: colors.text.dark,
+      border: colors.accent.cyan,
+    },
+  },
+  ghost: {
+    neutral: {
+      background: 'transparent',
+      color: colors.text.primary,
+      border: 'oklch(1 0 0 / 15%)',
+    },
+    hover: {
+      background: 'oklch(1 0 0 / 7.8%)',
+      color: colors.text.primary,
+      border: `oklch(1 0 0 / 35%)`,
+    },
+    focus: {
+      background: 'oklch(1 0 0 / 25%)',
+      color: colors.text.primary,
+      border: 'oklch(1 0 0 / 50%)',
+    },
+    active: {
+      background: 'oklch(1 0 0 / 15%)',
+      color: colors.text.primary,
+      border: 'oklch(1 0 0 / 40%)',
+    },
+    disabled: {
+      background: 'transparent',
+      color: colors.text.muted,
+      border: 'oklch(1 0 0 / 10%)',
+    },
+  },
+};
 
 interface StyledProps {
   $variant: ButtonVariant;
@@ -14,28 +72,21 @@ interface StyledProps {
 
 const StyledButton = styled.button<StyledProps>`
   display: inline-flex;
-  gap: ${({ theme, $size }) => theme.components.button.sizes[$size].gap};
+  gap: ${({ theme }) => theme.spacing[8]};
   align-items: center;
   justify-content: center;
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
-  padding: ${({ theme, $size }) => {
-    const s = theme.components.button.sizes[$size];
-    return `${s.paddingY} ${s.paddingX}`;
-  }};
+  padding: ${({ theme }) => theme.spacing[12]}
+    ${({ theme }) => theme.spacing[24]};
   font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme, $size }) =>
-    theme.components.button.sizes[$size].fontSize};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  line-height: ${({ theme }) => theme.font.lineHeight.normal};
-  color: ${({ theme, $variant }) =>
-    theme.components.button.variants[$variant].color};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
+  color: ${({ $variant }) => ButtonType[$variant].neutral.color};
   white-space: nowrap;
   cursor: pointer;
-  background: ${({ theme, $variant }) =>
-    theme.components.button.variants[$variant].background};
-  border: 1px solid
-    ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].borderColor};
+  background: ${({ $variant }) => ButtonType[$variant].neutral.background};
+  border: 1px solid ${({ $variant }) => ButtonType[$variant].neutral.border};
   border-radius: 0.75rem;
   transition:
     color 0.2s ease,
@@ -43,55 +94,39 @@ const StyledButton = styled.button<StyledProps>`
     border-color 0.2s ease;
 
   svg {
-    width: ${({ theme, $size }) =>
-      theme.components.button.sizes[$size].iconSize};
-    height: ${({ theme, $size }) =>
-      theme.components.button.sizes[$size].iconSize};
+    width: ${({ theme, $size }) => theme.icons[$size]};
+    height: ${({ theme, $size }) => theme.icons[$size]};
   }
 
   &:hover {
-    color: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].hover.color ?? 'inherit'};
-    background: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].hover.background ?? 'inherit'};
-    border-color: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].hover.borderColor ??
-      'inherit'};
+    color: ${({ $variant }) => ButtonType[$variant].hover.color};
+    background: ${({ $variant }) => ButtonType[$variant].hover.background};
+    border-color: ${({ $variant }) => ButtonType[$variant].hover.border};
 
     &::after {
       width: 100%;
     }
   }
 
-  &:active {
-    color: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].active.color ?? 'inherit'};
-    background: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].active.background ??
-      'inherit'};
-    border-color: ${({ theme, $variant }) =>
-      theme.components.button.variants[$variant].active.borderColor ??
-      'inherit'};
+  &:focus-visible {
+    color: ${({ $variant }) => ButtonType[$variant].focus.color};
+    background: ${({ $variant }) => ButtonType[$variant].focus.background};
+    border-color: ${({ $variant }) => ButtonType[$variant].focus.border};
   }
 
-  ${({ theme, $variant }) =>
-    $variant === 'link' &&
-    `
-      position: relative;
-      padding-right: 0;
-      padding-left: 0;
+  &:active {
+    color: ${({ $variant }) => ButtonType[$variant].active.color};
+    background: ${({ $variant }) => ButtonType[$variant].active.background};
+    border-color: ${({ $variant }) => ButtonType[$variant].active.border};
+  }
 
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 1px;
-        background: ${theme.colors.main.primary};
-        transition: width 0.3s ease;
-      }
-    `}
+  &:disabled {
+    color: ${({ $variant }) => ButtonType[$variant].disabled.color};
+    cursor: not-allowed;
+    background: ${({ $variant }) => ButtonType[$variant].disabled.background};
+    border-color: ${({ $variant }) => ButtonType[$variant].disabled.border};
+    opacity: 0.4;
+  }
 `;
 
 export interface ButtonProps extends Omit<
@@ -107,6 +142,7 @@ export interface ButtonProps extends Omit<
   href?: string;
   target?: string;
   rel?: string;
+  disabled?: boolean;
 }
 
 const _Button = ({
@@ -114,6 +150,7 @@ const _Button = ({
   variant = 'primary',
   size = 'md',
   fullWidth = false,
+  disabled = false,
   iconLeft,
   iconRight,
   href,
@@ -141,6 +178,7 @@ const _Button = ({
       $size={size}
       $fullWidth={fullWidth}
       onClick={handleClick}
+      disabled={disabled}
       {...rest}
       {...(href
         ? { 'data-href': href, 'data-target': target, 'data-rel': rel }

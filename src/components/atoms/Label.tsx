@@ -1,20 +1,15 @@
 import React from 'react';
-import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
-import { theme } from '@/styles/theme';
 
-const Container = styled.footer`
-  display: flex;
-  justify-content: space-between;
-  padding: 28px;
-  border-top: 1px solid ${theme.components.header.scrolled.borderColor};
+const Container = styled.div`
+  width: 100%;
 `;
 
 const Text = styled.label`
   font-size: ${({ theme }) => theme.font.size.tag.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
-  color: ${({ theme }) => theme.colors.text.muted};
+  color: ${({ theme }) => theme.colors.accent.cyan};
 
   @media (min-width: ${({ theme }) => theme.breakpoints.sm}) {
     font-size: ${({ theme }) => theme.font.size.caption.fontSize};
@@ -22,15 +17,16 @@ const Text = styled.label`
   }
 `;
 
-function _Footer() {
-  const t = useTranslations('Footer');
+interface LabelProps {
+  text: string;
+}
 
+function _Label({ ...props }: LabelProps) {
   return (
     <Container>
-      <Text>© 2026 Sergi Mitjavila</Text>
-      <Text>{t('built_with')}</Text>
+      <Text>{props.text}</Text>
     </Container>
   );
 }
 
-export const Footer = React.memo(_Footer);
+export const Label = React.memo(_Label);

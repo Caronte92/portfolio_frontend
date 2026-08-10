@@ -4,8 +4,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 // import { useTranslations } from 'next-intl';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import styled from 'styled-components';
-import { IconClose, IconKebab, IconLogo } from '@/components/atoms/icons';
-import { LanguageSwitcher } from '@/components/molecules';
+import { IconClose, IconKebab, IconLogo } from '@/components/atoms/icons/';
+import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import type { Locale } from '../../../i18n-config';
 
 const Container = styled.header<{ $scrolled: boolean }>`
@@ -162,7 +162,7 @@ const MobileLanguageSwitcher = styled.div`
 const LanguagePill = styled.button<{ $active: boolean }>`
   padding: 0.375rem 0.875rem;
   font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme }) => theme.font.size.sm};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ $active, theme }) =>
     $active ? theme.colors.neutral.white : theme.colors.neutral.grey};

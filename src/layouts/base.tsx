@@ -2,8 +2,8 @@
 
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Header } from '@/components/organisms';
 import { Footer } from '@/components/organisms/Footer';
+import { Header } from '@/components/organisms/Header';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { theme } from '@/styles/theme';
 

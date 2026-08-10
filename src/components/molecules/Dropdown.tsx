@@ -1,26 +1,30 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { IconChevron } from '@/components/atoms/icons';
 
-const Wrapper = styled.div`
+type DropdownPreviewState = 'hover' | 'focus' | 'active' | 'open';
+
+const Container = styled.div`
   position: relative;
   display: inline-flex;
 `;
 
-const Trigger = styled.button`
+const Trigger = styled.button<{ $previewState?: DropdownPreviewState }>`
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
-  padding: 0.5rem 0.75rem;
+  padding: 0.62rem 1rem;
   font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme }) => theme.font.size.sm};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
-  line-height: ${({ theme }) => theme.font.lineHeight.normal};
-  color: ${({ theme }) => theme.components.dropdown.trigger.color};
+  line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
   white-space: nowrap;
   cursor: pointer;
-  background: ${({ theme }) => theme.components.dropdown.trigger.background};
+  background: ${({ theme }) => theme.colors.bg.primary};
+  border: 1px solid #64748b80;
   border-radius: 0.75rem;
   transition:
     color 0.2s ease,
@@ -28,12 +32,54 @@ const Trigger = styled.button`
     border-color 0.2s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.components.dropdown.trigger.hover.color};
+    color: ${({ theme }) => theme.colors.text.primary};
     background: ${({ theme }) =>
       theme.components.dropdown.trigger.hover.background};
     border-color: ${({ theme }) =>
       theme.components.dropdown.trigger.hover.borderColor};
   }
+
+  &:focus-visible {
+    outline: none;
+    border-color: ${({ theme }) =>
+      theme.components.dropdown.trigger.focus.borderColor};
+  }
+
+  &:active {
+    background: ${({ theme }) =>
+      theme.components.dropdown.trigger.active.background};
+    border-color: ${({ theme }) =>
+      theme.components.dropdown.trigger.active.borderColor};
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  ${({ theme, $previewState }) =>
+    $previewState === 'hover' &&
+    css`
+      color: ${theme.colors.text.primary};
+      background: ${theme.components.dropdown.trigger.hover.background};
+      border-color: ${theme.components.dropdown.trigger.hover.borderColor};
+    `}
+
+  ${({ theme, $previewState }) =>
+    (($previewState === 'focus' || $previewState === 'open') &&
+      css`
+        color: ${theme.components.dropdown.trigger.focus.color};
+        border-color: ${theme.components.dropdown.trigger.focus.borderColor};
+      `) ||
+    undefined}
+
+  ${({ theme, $previewState }) =>
+    $previewState === 'active' &&
+    css`
+      color: ${theme.components.dropdown.trigger.active.color};
+      background: ${theme.components.dropdown.trigger.active.background};
+      border-color: ${theme.components.dropdown.trigger.active.borderColor};
+    `}
 
   & > svg:first-child {
     flex-shrink: 0;
@@ -58,8 +104,8 @@ const Menu = styled.ul<{ $open: boolean }>`
   padding: 0.25rem;
   margin: 0;
   list-style: none;
-  background: ${({ theme }) => theme.components.dropdown.menu.background};
-  border: 1px solid ${({ theme }) => theme.components.dropdown.menu.borderColor};
+  background: ${({ theme }) => theme.colors.bg.primary};
+  border: 1px solid #64748b80;
   border-radius: 0.75rem;
   box-shadow: ${({ theme }) => theme.components.dropdown.menu.shadow};
 `;
@@ -70,7 +116,7 @@ const MenuItem = styled.li<{ $active: boolean }>`
   align-items: center;
   padding: 0.5rem 0.75rem;
   font-family: ${({ theme }) => theme.font.family.sans};
-  font-size: ${({ theme }) => theme.font.size.sm};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   color: ${({ theme, $active }) =>
     $active
@@ -102,6 +148,9 @@ export interface DropdownProps {
   onChange: (value: string) => void;
   ariaLabel?: string;
   triggerIcon?: React.ReactNode;
+  disabled?: boolean;
+  /** Forces a pseudo-state visually, for style-guide swatches only. */
+  previewState?: DropdownPreviewState;
 }
 
 const _Dropdown = ({
@@ -110,9 +159,12 @@ const _Dropdown = ({
   onChange,
   ariaLabel,
   triggerIcon,
+  disabled = false,
+  previewState,
 }: DropdownProps) => {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const isOpen = open || previewState === 'open';
 
   const activeOption = options.find((o) => o.value === value);
   const activeLabel = activeOption?.label ?? value;
@@ -139,30 +191,40 @@ const _Dropdown = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      setOpen(false);
-    }
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setOpen((prev) => !prev);
-    }
-  }, []);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (disabled) return;
+      if (e.key === 'Escape') {
+        setOpen(false);
+      }
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+      }
+    },
+    [disabled]
+  );
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Container ref={wrapperRef}>
       <Trigger
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        disabled={disabled}
+        $previewState={previewState}
+        onClick={() => !disabled && setOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         aria-haspopup="listbox"
-        aria-expanded={open}
+        aria-expanded={isOpen}
         aria-label={ariaLabel}
       >
         {triggerIcon}
         {activeLabel}
+        <IconChevron
+          stroke="oklch(0.5544 0.0407 257.42 / 50.2%)"
+          open={isOpen}
+        />
       </Trigger>
-      <Menu $open={open} role="listbox" aria-label={ariaLabel}>
+      <Menu $open={isOpen} role="listbox" aria-label={ariaLabel}>
         {options.map((option) => (
           <MenuItem
             key={option.value}
@@ -176,7 +238,7 @@ const _Dropdown = ({
           </MenuItem>
         ))}
       </Menu>
-    </Wrapper>
+    </Container>
   );
 };
 

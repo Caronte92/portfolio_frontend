@@ -1,540 +1,459 @@
 'use client';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import styled, { useTheme } from 'styled-components';
-import { Button, Dropdown, Text, Pill, Link } from '@/components/atoms';
-import { LanguageSwitcher } from '@/components/molecules';
-import { Page } from '@/styles/home.styles';
+import { Button } from '@/components/atoms/Button';
+import { Label } from '@/components/atoms/Label';
+import { Link } from '@/components/atoms/Link';
+import { Tag } from '@/components/atoms/Tag';
+import { TechBadge } from '@/components/atoms/TechBadge';
+import IconLanguage from '@/components/atoms/icons/IconLanguage';
+import { Dropdown, DropdownOption } from '@/components/molecules/Dropdown';
+import { SocialLink } from '@/components/molecules/SocialLink';
+import { ProjectCard } from '@/components/organisms/ProjectCard';
+import { PageTest } from '@/styles/home.styles';
+import type { spacing } from '@/styles/spacing';
 
-const DEMO_OPTIONS = [
-  { value: 'react', label: 'React' },
-  { value: 'vue', label: 'Vue' },
-  { value: 'svelte', label: 'Svelte' },
-  { value: 'angular', label: 'Angular' },
-];
-
-function DropdownDemo() {
-  const [value, setValue] = React.useState('react');
-  return (
-    <Dropdown
-      options={DEMO_OPTIONS}
-      value={value}
-      onChange={setValue}
-      ariaLabel="Framework"
-    />
-  );
-}
+const SectionHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[16]};
+  margin-bottom: ${({ theme }) => theme.spacing[40]};
+`;
 
 const Title = styled.h1`
-  font-size: ${({ theme }) => theme.font.size['4xl']};
+  font-size: ${({ theme }) => theme.font.size.display.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.bold};
-  color: ${({ theme }) => theme.colors.neutral.white};
+  line-height: ${({ theme }) => theme.font.size.display.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Subtitle = styled.p`
-  font-size: ${({ theme }) => theme.font.size.lg};
-  color: ${({ theme }) => theme.colors.neutral.grey};
+  font-size: ${({ theme }) => theme.font.size.h4.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.h4.lineHeight};
+  color: ${({ theme }) => theme.colors.text.secondary};
+`;
+
+const Divider = styled.div<{ $color: string }>`
+  border-bottom: 1px solid
+    ${({ $color }) => `color-mix(in oklch, ${$color} 20%, transparent)`};
+`;
+
+const Description = styled.p`
+  font-size: ${({ theme }) => theme.font.size.body.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.body.lineHeight};
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const BodySections = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[48]};
+`;
+
+const HeaderSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[8]};
+`;
+
+const SectionTitle = styled.h4`
+  font-size: ${({ theme }) => theme.font.size.bodyLarge.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.bodyLarge.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[4]};
-  padding: ${({ theme }) => theme.spacing[4]};
-  background: ${({ theme }) => theme.colors.neutral.black};
-  border: 1px solid ${({ theme }) => theme.colors.neutral.black};
-  border-radius: 0.75rem;
+  gap: ${({ theme }) => theme.spacing[32]};
+  padding: ${({ theme }) => theme.spacing[40]};
+  border: 1px solid oklch(100% 0 0deg / 6%);
+  border-radius: 1rem;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: ${({ theme }) => theme.font.size['2xl']};
+const SectionName = styled.p`
+  font-size: ${({ theme }) => theme.font.size.h2.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
-  color: ${({ theme }) => theme.colors.accent.primary};
+  line-height: ${({ theme }) => theme.font.size.h2.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
-const ColorGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
-  gap: ${({ theme }) => theme.spacing[3]};
+const SectionContainer = styled.div<{
+  $isColumn?: boolean;
+  $alignment?: string;
+}>`
+  display: flex;
+  flex-direction: ${({ $isColumn }) => ($isColumn ? 'column' : 'row')};
+  gap: ${({ theme }) => theme.spacing[16]};
+  align-items: ${({ $alignment }) => (!$alignment ? `flex-start` : $alignment)};
+  width: fit-content;
 `;
 
-const ColorSwatch = styled.div<{ $color: string }>`
+const ColorSwatch = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[1]};
-  align-items: center;
+  gap: ${({ theme }) => theme.spacing[8]};
 `;
 
-const SwatchBox = styled.div<{ $color: string }>`
-  width: 100%;
-  height: 3rem;
-  background: ${({ $color }) => $color};
-  border: 1px solid ${({ theme }) => theme.colors.neutral.black};
+const ColorBox = styled.div<{ $color: string }>`
+  width: 4rem;
+  height: 4rem;
+  background-color: ${({ $color }) => $color};
+  border: 1px solid ${({ theme }) => theme.colors.text.secondary};
   border-radius: 0.5rem;
 `;
 
-const SwatchLabel = styled.span`
-  font-family: ${({ theme }) => theme.font.family.mono};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  color: ${({ theme }) => theme.colors.neutral.grey};
+const ItemName = styled.label`
+  font-size: ${({ theme }) => theme.font.size.tag.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
 `;
 
-const TypographySample = styled.div`
+const UnitTag = styled.label<{ $width: string }>`
+  width: ${({ $width }) => $width};
+  font-size: ${({ theme }) => theme.font.size.tag.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing[24]};
+  align-items: center;
+  justify-content: center;
+`;
+
+const DisplayText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.display.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
+  line-height: ${({ theme }) => theme.font.size.display.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const H1Text = styled.p`
+  font-size: ${({ theme }) => theme.font.size.h1.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.h1.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const H2Text = styled.p`
+  font-size: ${({ theme }) => theme.font.size.h2.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.h2.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const H3Text = styled.p`
+  font-size: ${({ theme }) => theme.font.size.h3.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.h3.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const H4Text = styled.p`
+  font-size: ${({ theme }) => theme.font.size.h4.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.semibold};
+  line-height: ${({ theme }) => theme.font.size.h4.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const BodyLargeText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.bodyLarge.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.bodyLarge.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const BodyText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.body.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.body.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const BodySmallText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.bodySmall.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const CaptionText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.caption.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.caption.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const TagText = styled.p`
+  font-size: ${({ theme }) => theme.font.size.tag.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
+  line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const SpaceSwatch = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[2]};
+  gap: ${({ theme }) => theme.spacing[8]};
+  align-items: center;
 `;
 
-const Badge = styled.span`
-  display: inline-block;
-  padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[3]}`};
-  font-family: ${({ theme }) => theme.font.family.mono};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  color: ${({ theme }) => theme.colors.main.primary};
-  background: ${({ theme }) => theme.colors.neutral.grey};
-  border-radius: 0.375rem;
-`;
-
-const EnvBadge = styled(Badge)`
-  color: ${({ theme }) => theme.colors.neutral.white};
-  background: ${({ theme }) => theme.colors.accent.primary};
+const SpaceBox = styled.div<{ $height: keyof typeof spacing }>`
+  width: 2rem;
+  height: ${({ theme, $height }) => theme.spacing[$height]};
+  background: ${({ theme }) => theme.colors.accent.cyan};
+  border-radius: 0.25rem;
 `;
 
 function _TestPage() {
-  const env = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'unknown';
+  const t = useTranslations('TestPage');
   const theme = useTheme();
 
+  const colors = [
+    {
+      color: theme.colors.bg.primary,
+      name: `bg.primary`,
+      code: `#090910`,
+    },
+    {
+      color: theme.colors.bg.surface,
+      name: `bg.surface`,
+      code: `#121224`,
+    },
+    {
+      color: theme.colors.accent.cyan,
+      name: `accent.cyan`,
+      code: `#22D3EE`,
+    },
+    {
+      color: theme.colors.accent.purple,
+      name: `accent.purple`,
+      code: `#AE87EF`,
+    },
+    {
+      color: theme.colors.text.primary,
+      name: `text.primary`,
+      code: `#FFFFFF`,
+    },
+    {
+      color: theme.colors.text.secondary,
+      name: `text.secondary`,
+      code: `#D9D9D9`,
+    },
+    {
+      color: theme.colors.text.muted,
+      name: `text.muted`,
+      code: `#64748B`,
+    },
+    {
+      color: theme.colors.text.dark,
+      name: `text.dark`,
+      code: `#000000`,
+    },
+  ];
+
+  const spaces: (keyof typeof spacing)[] = [
+    4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80,
+  ];
+
+  const OPTIONS: DropdownOption[] = [
+    { value: 'en', label: 'EN' },
+    { value: 'es', label: 'ES' },
+    { value: 'cat', label: 'CAT' },
+  ];
+
   return (
-    <Page>
-      <div>
-        <Title>Design System Test</Title>
-        <Subtitle>
-          Visual validation of theme tokens — only visible in dev & pre.
-          <EnvBadge style={{ marginLeft: '1rem' }}>{env}</EnvBadge>
-        </Subtitle>
-      </div>
-
-      <Section>
-        <SectionTitle>Main Palette</SectionTitle>
-        <ColorGrid>
-          <ColorSwatch key="primary" $color={theme.colors.main.primary}>
-            <SwatchBox $color={theme.colors.main.primary} />
-            <SwatchLabel>primary</SwatchLabel>
-          </ColorSwatch>
-        </ColorGrid>
-      </Section>
-
-      <Section>
-        <SectionTitle>Accent Palette</SectionTitle>
-        <ColorGrid>
-          <ColorSwatch key="primary" $color={theme.colors.accent.primary}>
-            <SwatchBox $color={theme.colors.accent.primary} />
-            <SwatchLabel>primary</SwatchLabel>
-          </ColorSwatch>
-        </ColorGrid>
-      </Section>
-
-      <Section>
-        <SectionTitle>Neutral Palette</SectionTitle>
-        <ColorGrid>
-          <ColorSwatch key="bg" $color={theme.colors.neutral.bg}>
-            <SwatchBox $color={theme.colors.neutral.bg} />
-            <SwatchLabel>bg</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="white" $color={theme.colors.neutral.white}>
-            <SwatchBox $color={theme.colors.neutral.white} />
-            <SwatchLabel>white</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="black" $color={theme.colors.neutral.black}>
-            <SwatchBox $color={theme.colors.neutral.black} />
-            <SwatchLabel>black</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="grey" $color={theme.colors.neutral.grey}>
-            <SwatchBox $color={theme.colors.neutral.grey} />
-            <SwatchLabel>grey</SwatchLabel>
-          </ColorSwatch>
-        </ColorGrid>
-      </Section>
-
-      <Section>
-        <SectionTitle>Support Colors</SectionTitle>
-        <ColorGrid>
-          <ColorSwatch key="danger" $color={theme.colors.support.danger}>
-            <SwatchBox $color={theme.colors.support.danger} />
-            <SwatchLabel>danger</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="error" $color={theme.colors.support.error}>
-            <SwatchBox $color={theme.colors.support.error} />
-            <SwatchLabel>error</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="warning" $color={theme.colors.support.warning}>
-            <SwatchBox $color={theme.colors.support.warning} />
-            <SwatchLabel>warning</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="success" $color={theme.colors.support.success}>
-            <SwatchBox $color={theme.colors.support.success} />
-            <SwatchLabel>success</SwatchLabel>
-          </ColorSwatch>
-          <ColorSwatch key="info" $color={theme.colors.support.info}>
-            <SwatchBox $color={theme.colors.support.info} />
-            <SwatchLabel>info</SwatchLabel>
-          </ColorSwatch>
-        </ColorGrid>
-      </Section>
-
-      <Section>
-        <SectionTitle>Typography</SectionTitle>
-        <TypographySample>
-          <span style={{ fontSize: '3.75rem', fontWeight: 800 }}>
-            6xl / extrabold — Hero title
-          </span>
-          <span style={{ fontSize: '3rem', fontWeight: 700 }}>
-            5xl / bold — Hero subtitle
-          </span>
-          <span style={{ fontSize: '2.25rem', fontWeight: 700 }}>
-            4xl / bold — Section heading
-          </span>
-          <span style={{ fontSize: '1.875rem', fontWeight: 600 }}>
-            3xl / semibold — Large heading
-          </span>
-          <span style={{ fontSize: '1.5rem', fontWeight: 600 }}>
-            2xl / semibold — Section subheading
-          </span>
-          <span style={{ fontSize: '1.25rem', fontWeight: 500 }}>
-            xl / medium — Subtitle
-          </span>
-          <span style={{ fontSize: '1.125rem', fontWeight: 400 }}>
-            lg / normal — Large body
-          </span>
-          <span style={{ fontSize: '1rem', fontWeight: 400 }}>
-            base / normal — Body text
-          </span>
-          <span style={{ fontSize: '0.875rem', fontWeight: 400 }}>
-            sm / normal — Secondary text
-          </span>
-          <span style={{ fontSize: '0.75rem', fontWeight: 400 }}>
-            xs / normal — Caption
-          </span>
-        </TypographySample>
-      </Section>
-
-      <Section>
-        <SectionTitle>Spacing</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-        >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((step) => {
-            const values: Record<number, string> = {
-              1: '0.25rem',
-              2: '0.5rem',
-              3: '0.75rem',
-              4: '1rem',
-              5: '1.5rem',
-              6: '2rem',
-              7: '3rem',
-              8: '4rem',
-              9: '6rem',
-              10: '8rem',
-            };
-            return (
-              <div
-                key={step}
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}
-              >
-                <SwatchLabel style={{ minWidth: '6rem' }}>
-                  spacing.{step}
-                </SwatchLabel>
-                <div
-                  style={{
-                    width: values[step],
-                    height: '1rem',
-                    background: theme.colors.main.primary,
-                    borderRadius: '0.25rem',
-                  }}
-                />
-                <SwatchLabel>{values[step]}</SwatchLabel>
-              </div>
-            );
-          })}
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Buttons — Variants</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-        >
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Primary
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Button text="Small" variant="primary" size="sm" />
-              <Button text="Medium" variant="primary" size="md" />
-              <Button text="Large" variant="primary" size="lg" />
-              <Button text="Extra large" variant="primary" size="xl" />
-            </div>
-          </div>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Ghost
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Button text="Small" variant="ghost" size="sm" />
-              <Button text="Medium" variant="ghost" size="md" />
-              <Button text="Large" variant="ghost" size="lg" />
-              <Button text="Extra large" variant="ghost" size="xl" />
-            </div>
-          </div>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Link
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Button text="Small" variant="link" size="sm" />
-              <Button text="Medium" variant="link" size="md" />
-              <Button text="Large" variant="link" size="lg" />
-              <Button text="Extra large" variant="link" size="xl" />
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Buttons — With Icons</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-        >
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Icon left
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+    <PageTest>
+      <SectionHeader>
+        <Title>{t('title')}</Title>
+        <Subtitle>{t('subtitle')}</Subtitle>
+        <Description>{t('description')}</Description>
+        <Divider $color={theme.colors.accent.cyan} />
+      </SectionHeader>
+      <BodySections>
+        <HeaderSection>
+          <SectionTitle>{t('atoms_title')}</SectionTitle>
+          <Description>{t('atoms_description')}</Description>
+          <Divider $color={theme.colors.text.secondary} />
+        </HeaderSection>
+        <Section>
+          <SectionName>{t('colors_title')}</SectionName>
+          <SectionContainer>
+            {colors.map(({ color, name, code }) => (
+              <ColorSwatch key={name}>
+                <ColorBox $color={color} />
+                <ItemName>{name}</ItemName>
+                <UnitTag $width="auto">{code}</UnitTag>
+              </ColorSwatch>
+            ))}
+          </SectionContainer>
+        </Section>
+        <Section>
+          <SectionName>{t('typography_title')}</SectionName>
+          <SectionContainer $isColumn={true}>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_display_label')}</UnitTag>
+              <DisplayText>{t('typography_display_sample')}</DisplayText>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_h1_label')}</UnitTag>
+              <H1Text>{t('typography_h1_sample')}</H1Text>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_h2_label')}</UnitTag>
+              <H2Text>{t('typography_h2_sample')}</H2Text>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_h3_label')}</UnitTag>
+              <H3Text>{t('typography_h3_sample')}</H3Text>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_h4_label')}</UnitTag>
+              <H4Text>{t('typography_h4_sample')}</H4Text>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">
+                {t('typography_body_large_label')}
+              </UnitTag>
+              <BodyLargeText>{t('typography_body_large_sample')}</BodyLargeText>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_body_label')}</UnitTag>
+              <BodyText>{t('typography_body_sample')}</BodyText>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">
+                {t('typography_body_small_label')}
+              </UnitTag>
+              <BodySmallText>{t('typography_body_small_sample')}</BodySmallText>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_caption_label')}</UnitTag>
+              <CaptionText>{t('typography_caption_sample')}</CaptionText>
+            </TextContainer>
+            <TextContainer>
+              <UnitTag $width="7.5rem">{t('typography_tag_label')}</UnitTag>
+              <TagText>{t('typography_tag_sample')}</TagText>
+            </TextContainer>
+          </SectionContainer>
+        </Section>
+        <Section>
+          <SectionName>{t('spacing_title')}</SectionName>
+          <SectionContainer $alignment="baseline">
+            {spaces.map((space, index) => (
+              <SpaceSwatch key={index}>
+                <SpaceBox $height={space} />
+                <UnitTag $width="auto">{space}</UnitTag>
+              </SpaceSwatch>
+            ))}
+          </SectionContainer>
+        </Section>
+      </BodySections>
+      <BodySections>
+        <HeaderSection>
+          <SectionTitle>{t('molecules_title')}</SectionTitle>
+          <Description>{t('molecules_description')}</Description>
+          <Divider $color={theme.colors.text.secondary} />
+        </HeaderSection>
+        <Section>
+          <SectionContainer>
+            <SpaceSwatch>
+              <UnitTag $width="auto">
+                {t('molecules_button_primary_label')}
+              </UnitTag>
+              <Button text={t('molecules_button_sample')} disabled={false} />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">
+                {t('molecules_button_ghost_label')}
+              </UnitTag>
               <Button
-                text="Star"
-                variant="primary"
-                size="md"
-                iconLeft={
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                }
-              />
-              <Button
-                text="Star"
+                text={t('molecules_button_sample')}
                 variant="ghost"
-                size="md"
-                iconLeft={
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                disabled={false}
+              />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_techbadge_label')}</UnitTag>
+              <TechBadge text={t('molecules_techbadge_sample')} />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_label_label')}</UnitTag>
+              <Label text={t('molecules_label_sample')} />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_sociallink_label')}</UnitTag>
+              <SocialLink
+                icon={
+                  <IconLanguage
+                    size={theme.icons.sm}
+                    ariaLabel={t('molecules_language_selected_aria_label')}
+                    stroke={theme.colors.accent.purple}
+                  />
+                }
+                text={t('molecules_sociallink_sample')}
+              />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_dropdown_label')}</UnitTag>
+              <Dropdown
+                options={OPTIONS}
+                value={'es'}
+                onChange={(e) => console.log(e)}
+                ariaLabel={t('molecules_dropdown_aria_label')}
+                triggerIcon={
+                  <IconLanguage
+                    size="1.125rem"
+                    ariaLabel={t('molecules_language_selected_aria_label')}
+                  />
                 }
               />
-            </div>
-          </div>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Icon right
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Button
-                text="Arrow"
-                variant="primary"
-                size="md"
-                iconRight={
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                }
-              />
-              <Button
-                text="Arrow"
-                variant="ghost"
-                size="md"
-                iconRight={
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                }
-              />
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Pills — Variants & Sizes</SectionTitle>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Solid
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Pill label="Small" variant="solid" size="sm" />
-              <Pill label="Medium" variant="solid" size="md" />
-              <Pill label="Large" variant="solid" size="lg" />
-            </div>
-          </div>
-
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Subtle
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Pill label="Small" variant="subtle" size="sm" />
-              <Pill label="Medium" variant="subtle" size="md" />
-              <Pill label="Large" variant="subtle" size="lg" />
-            </div>
-          </div>
-
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Outline
-            </SwatchLabel>
-            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Pill label="Small" variant="outline" size="sm" />
-              <Pill label="Medium" variant="outline" size="md" />
-              <Pill label="Large" variant="outline" size="lg" />
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Text — Sizes</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-        >
-          <Text as="h1" size="6xl" weight="extrabold">
-            6xl extrabold
-          </Text>
-          <Text as="h1" size="5xl" weight="bold">
-            5xl bold
-          </Text>
-          <Text as="h2" size="4xl" weight="bold">
-            4xl bold
-          </Text>
-          <Text as="h2" size="3xl" weight="semibold">
-            3xl semibold
-          </Text>
-          <Text as="h3" size="2xl" weight="semibold">
-            2xl semibold
-          </Text>
-          <Text as="h4" size="xl" weight="medium">
-            xl medium
-          </Text>
-          <Text as="h5" size="lg" weight="medium">
-            lg medium
-          </Text>
-          <Text as="p" size="base">
-            base normal
-          </Text>
-          <Text as="p" size="sm">
-            sm normal
-          </Text>
-          <Text as="span" size="xs">
-            xs normal
-          </Text>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Text — Colors</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-        >
-          <Text as="p" size="base" color="main.primary">
-            main.primary
-          </Text>
-          <Text as="p" size="base" color="accent.primary">
-            accent.primary
-          </Text>
-          <Text as="p" size="base" color="neutral.grey">
-            neutral.grey
-          </Text>
-          <Text as="p" size="base" color="neutral.white">
-            neutral.white
-          </Text>
-          <Text as="p" size="base" color="neutral.black">
-            neutral.black
-          </Text>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Text — Features</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-        >
-          <Text as="p" size="base" weight="bold" lineHeight="tight">
-            lineHeight tight — Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-          </Text>
-          <Text as="p" size="base" lineHeight="relaxed">
-            lineHeight relaxed — Lorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-          </Text>
-          <Text as="p" size="base" align="center">
-            align center
-          </Text>
-          <Text as="p" size="base" align="right">
-            align right
-          </Text>
-          <div style={{ maxWidth: '200px' }}>
-            <Text as="p" size="base" truncate>
-              truncate — This text is way too long and will be cut off with an
-              ellipsis
-            </Text>
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Links — Variants</SectionTitle>
-        <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Primary
-            </SwatchLabel>
-            <Link text="Live Demo" href="#" variant="primary" />
-          </div>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Muted
-            </SwatchLabel>
-            <Link text="Source" href="#" variant="muted" />
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Dropdown</SectionTitle>
-        <div
-          style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-        >
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Generic Dropdown
-            </SwatchLabel>
-            <DropdownDemo />
-          </div>
-          <div>
-            <SwatchLabel style={{ display: 'block', marginBottom: '0.5rem' }}>
-              Language Switcher (molecule)
-            </SwatchLabel>
-            <LanguageSwitcher />
-          </div>
-        </div>
-      </Section>
-    </Page>
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_tag_label')}</UnitTag>
+              <Tag text={t('molecules_tag_sample')} />
+            </SpaceSwatch>
+            <SpaceSwatch>
+              <UnitTag $width="auto">{t('molecules_link_label')}</UnitTag>
+              <Link text={t('molecules_link_sample')} href={'/es/test'} />
+            </SpaceSwatch>
+          </SectionContainer>
+        </Section>
+      </BodySections>
+      <BodySections>
+        <HeaderSection>
+          <SectionTitle>Organisms</SectionTitle>
+          <Description>
+            Complex UI sections composed from molecules — cards, timeline
+            entries, stack groups
+          </Description>
+          <Divider $color={theme.colors.text.secondary} />
+        </HeaderSection>
+        <Section>
+          <UnitTag $width="auto">ProjectCard</UnitTag>
+          <ProjectCard
+            headerImage={''}
+            altImage={''}
+            projectName={'CloudSync Dashboard'}
+            projectDescription={
+              'Real-time analytics dashboard built with React and .NET Core microservices.'
+            }
+            techBadges={['React.js', '.NET Core', 'AWS']}
+            linkText={'View Project'}
+            linkHref={'/es/test'}
+          />
+        </Section>
+      </BodySections>
+    </PageTest>
   );
 }
 

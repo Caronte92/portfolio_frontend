@@ -4,3 +4,4 @@ export { default as IconClose } from '@/components/atoms/icons/IconClose';
 export { default as IconLogo } from '@/components/atoms/icons/IconLogo';
 export { default as IconKebab } from '@/components/atoms/icons/IconKebab';
 export { default as IconGitHub } from '@/components/atoms/icons/IconGitHub';
+export { default as IconLinkedinLogo } from '@/components/atoms/icons/IconLinkedinLogo';

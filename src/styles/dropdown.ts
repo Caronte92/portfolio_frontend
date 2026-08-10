@@ -10,6 +10,15 @@ export interface DropdownTokens {
       background: string;
       borderColor: string;
     };
+    focus: {
+      color: string;
+      borderColor: string;
+    };
+    active: {
+      color: string;
+      borderColor: string;
+      background: string;
+    };
   };
   menu: {
     background: string;
@@ -30,13 +39,22 @@ export interface DropdownTokens {
 
 export const dropdown: DropdownTokens = {
   trigger: {
-    color: '',
+    color: colors.text.muted,
     background: 'transparent',
-    borderColor: '',
+    borderColor: '#64748b80',
     hover: {
       color: colors.neutral.grey,
       background: '',
-      borderColor: '',
+      borderColor: '#64748b80',
+    },
+    focus: {
+      color: colors.accent.cyan,
+      borderColor: colors.accent.cyan,
+    },
+    active: {
+      color: colors.accent.cyan,
+      borderColor: colors.accent.cyan,
+      background: 'oklch(0.7971 0.1339 211.53 / 10%)',
     },
   },
   menu: {

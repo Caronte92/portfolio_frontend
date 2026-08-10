@@ -1,21 +1,49 @@
-import { colors } from '@/styles/colors';
-
 export const font = {
   family: {
     sans: "var(--font-work-sans), 'Work Sans', system-ui, -apple-system, sans-serif",
     mono: "ui-monospace, 'Cascadia Code', 'Fira Code', monospace",
   },
   size: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    base: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
-    '4xl': '2.25rem',
-    '5xl': '3rem',
-    '6xl': '3.75rem',
+    display: {
+      fontSize: '2.5rem',
+      lineHeight: 'normal',
+    },
+    h1: {
+      fontSize: '2.25rem',
+      lineHeight: 'normal',
+    },
+    h2: {
+      fontSize: '1.75rem',
+      lineHeight: 'normal',
+    },
+    h3: {
+      fontSize: '1.375rem',
+      lineHeight: 'normal',
+    },
+    h4: {
+      fontSize: '1.25rem',
+      lineHeight: 'normal',
+    },
+    bodyLarge: {
+      fontSize: '1.125rem',
+      lineHeight: 'normal',
+    },
+    body: {
+      fontSize: '1rem',
+      lineHeight: 'normal',
+    },
+    bodySmall: {
+      fontSize: '0.875rem',
+      lineHeight: 'normal',
+    },
+    caption: {
+      fontSize: '0.8125rem',
+      lineHeight: 'normal',
+    },
+    tag: {
+      fontSize: '0.75rem',
+      lineHeight: 'normal',
+    },
   },
   weight: {
     normal: 400,
@@ -23,16 +51,5 @@ export const font = {
     semibold: 600,
     bold: 700,
     extrabold: 800,
-  },
-  lineHeight: {
-    tight: 1.1,
-    snug: 1.3,
-    normal: 1.5,
-    relaxed: 1.75,
-  },
-  colors: {
-    eyebrow: colors.main.primary,
-    title: colors.neutral.white,
-    subtitle: colors.neutral.grey,
   },
 } as const;

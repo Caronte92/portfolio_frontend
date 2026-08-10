@@ -1,5 +1,4 @@
 import { breakpoints } from '@/styles/breakpoints';
-import { button, ButtonTokens } from '@/styles/button';
 import { colors, ColorsType } from '@/styles/colors';
 import { dropdown, DropdownTokens } from '@/styles/dropdown';
 import { font } from '@/styles/font';
@@ -16,7 +15,6 @@ export interface ITheme {
   spacing: typeof spacing;
   breakpoints: typeof breakpoints;
   components: {
-    button: ButtonTokens;
     dropdown: DropdownTokens;
     header: HeaderTokens;
   };
@@ -31,7 +29,6 @@ export const theme: ITheme = {
   spacing,
   breakpoints,
   components: {
-    button,
     dropdown,
     header,
   },

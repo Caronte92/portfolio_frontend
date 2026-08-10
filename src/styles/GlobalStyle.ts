@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
 
   /* 4. Body defaults — merged with global body styles */
   body {
-    line-height: ${({ theme }) => theme.font.lineHeight.normal};
+    line-height: ${({ theme }) => theme.font.size.body.lineHeight};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: ${({ theme }) => theme.colors.neutral.white};
