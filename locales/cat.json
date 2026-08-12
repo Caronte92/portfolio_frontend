@@ -21,6 +21,10 @@
     "button_work": "Veure el Meu Treball",
     "button_talk": "Parlem"
   },
+  "LetsTalk": {
+    "title": "Treballem junts",
+    "subtitle": "Sempre estic obert a parlar sobre nous projectes, consultoria d'arquitectura neta o oportunitats a temps complet. Escriu-me!"
+  },
   "TestPage": {
     "title": "Sistema de Disseny",
     "subtitle": "Portfoli de Sergi Mitjavila — Estructura d'Atomic Design",

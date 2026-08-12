@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 import { Button } from '@/components/atoms/Button';
 import { IconGitHub, IconLinkedinLogo } from '@/components/atoms/icons';
@@ -69,15 +70,14 @@ const SocialsWrapper = styled.div`
 `;
 
 function _LetsTalk() {
+  const t = useTranslations('LetsTalk');
+
   return (
     <SectionContainer>
       <Container>
         <InfoContainer>
-          <Title>Let's Work Together</Title>
-          <SubTitle>
-            I'm always open to discussing new projects, clean architecture
-            consulting, or full-time opportunities. Drop me a line!
-          </SubTitle>
+          <Title>{t('title')}</Title>
+          <SubTitle>{t('subtitle')}</SubTitle>
         </InfoContainer>
         <CTAsContainer>
           <Button
