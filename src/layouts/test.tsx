@@ -60,13 +60,6 @@ const HeaderSection = styled.div`
   gap: ${({ theme }) => theme.spacing[8]};
 `;
 
-const SectionTitle = styled.h4`
-  font-size: ${({ theme }) => theme.font.size.bodyLarge.fontSize};
-  font-weight: ${({ theme }) => theme.font.weight.semibold};
-  line-height: ${({ theme }) => theme.font.size.bodyLarge.lineHeight};
-  color: ${({ theme }) => theme.colors.text.primary};
-`;
-
 const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -281,7 +274,7 @@ function _TestPage() {
       </SectionHeader>
       <BodySections>
         <HeaderSection>
-          <SectionTitle>{t('atoms_title')}</SectionTitle>
+          <TechBadge text={t('atoms_title')} />
           <Description>{t('atoms_description')}</Description>
           <Divider $color={theme.colors.text.secondary} />
         </HeaderSection>
@@ -360,7 +353,7 @@ function _TestPage() {
       </BodySections>
       <BodySections>
         <HeaderSection>
-          <SectionTitle>{t('molecules_title')}</SectionTitle>
+          <TechBadge text={t('molecules_title')} />
           <Description>{t('molecules_description')}</Description>
           <Divider $color={theme.colors.text.secondary} />
         </HeaderSection>
@@ -431,24 +424,19 @@ function _TestPage() {
       </BodySections>
       <BodySections>
         <HeaderSection>
-          <SectionTitle>Organisms</SectionTitle>
-          <Description>
-            Complex UI sections composed from molecules — cards, timeline
-            entries, stack groups
-          </Description>
+          <TechBadge text={t('organisms_title')} />
+          <Description>{t('organisms_description')}</Description>
           <Divider $color={theme.colors.text.secondary} />
         </HeaderSection>
         <Section>
-          <UnitTag $width="auto">ProjectCard</UnitTag>
+          <UnitTag $width="auto">{t('organisms_projectcard_label')}</UnitTag>
           <ProjectCard
             headerImage={''}
             altImage={''}
-            projectName={'CloudSync Dashboard'}
-            projectDescription={
-              'Real-time analytics dashboard built with React and .NET Core microservices.'
-            }
+            projectName={t('organisms_projectcard_name')}
+            projectDescription={t('organisms_projectcard_description')}
             techBadges={['React.js', '.NET Core', 'AWS']}
-            linkText={'View Project'}
+            linkText={t('organisms_projectcard_link_text')}
             linkHref={'/es/test'}
           />
         </Section>

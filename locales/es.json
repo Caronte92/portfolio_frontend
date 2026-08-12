@@ -67,6 +67,12 @@
     "molecules_tag_label": "Tag",
     "molecules_tag_sample": "AWS",
     "molecules_link_label": "Link",
-    "molecules_link_sample": "Ir al proyecto"
+    "molecules_link_sample": "Ir al proyecto",
+    "organisms_title": "Organismos",
+    "organisms_description": "Secciones de UI complejas compuestas por moléculas — tarjetas, entradas de timeline, grupos de stack",
+    "organisms_projectcard_label": "ProjectCard",
+    "organisms_projectcard_name": "CloudSync Dashboard",
+    "organisms_projectcard_description": "Dashboard de analítica en tiempo real construido con React y microservicios .NET Core.",
+    "organisms_projectcard_link_text": "Ver proyecto"
   }
 }

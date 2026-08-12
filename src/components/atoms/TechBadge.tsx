@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   align-items: center;
+  width: fit-content;
   padding: 0.375rem 0.875rem;
+  text-align: center;
   background: oklch(79.71% 0.1339 211.53deg / 6%);
   border: 1px solid oklch(79.71% 0.1339 211.53deg / 15%);
   border-radius: 62.4375rem;
