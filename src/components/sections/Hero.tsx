@@ -39,9 +39,12 @@ const HeroWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[20]};
+  width: 60%;
+  text-align: left;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    text-align: left;
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 100%;
+    text-align: center;
   }
 `;
 
