@@ -1,13 +1,10 @@
 import React from 'react';
 import { IIconParams } from '@/lib/types/IIconParams';
 
-const IconChevron = React.forwardRef<
-  SVGSVGElement,
-  IIconParams & { open?: boolean }
->(
+const IconArrowRightAlt = React.forwardRef<SVGSVGElement, IIconParams>(
   (
     {
-      size = '16px',
+      size = '24px',
       color,
       disableFill = false,
       removeInlineStyle = false,
@@ -16,8 +13,7 @@ const IconChevron = React.forwardRef<
       className,
       stroke = 'currentColor',
       viewBox = '0 -960 960 960',
-      ariaLabel = 'chevron',
-      open = false,
+      ariaLabel = 'icon',
     },
     ref
   ) => {
@@ -26,7 +22,7 @@ const IconChevron = React.forwardRef<
       fill: disableFill ? 'none' : (color ?? 'currentColor'),
       width: size,
       height: size,
-      transform: open ? 'rotate(180deg)' : transform,
+      transform,
       ...style,
     };
 
@@ -36,13 +32,13 @@ const IconChevron = React.forwardRef<
         role="img"
         aria-label={ariaLabel}
         className={className}
-        data-testid="IconChevron"
+        data-testid="IconArrowRightAlt"
         xmlns="http://www.w3.org/2000/svg"
         viewBox={viewBox}
         style={removeInlineStyle ? undefined : mergedStyle}
       >
         <path
-          d="M480-344 240-584l43-43 197 197 197-197 43 43-240 240Z"
+          d="m560-242-43-42 168-168H160v-60h525L516-681l43-42 241 241-240 240Z"
           fill={disableFill ? 'none' : (color ?? stroke ?? 'currentColor')}
         />
       </svg>
@@ -50,5 +46,5 @@ const IconChevron = React.forwardRef<
   }
 );
 
-IconChevron.displayName = 'IconChevron';
-export default React.memo(IconChevron);
+IconArrowRightAlt.displayName = 'IconArrowRightAlt';
+export default React.memo(IconArrowRightAlt);

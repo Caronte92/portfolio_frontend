@@ -25,6 +25,15 @@
     "title": "Treballem junts",
     "subtitle": "Sempre estic obert a parlar sobre nous projectes, consultoria d'arquitectura neta o oportunitats a temps complet. Escriu-me!"
   },
+  "Projects": {
+    "title": "02 / PROJECTES",
+    "subtitle": "Casos d'estudi tècnics destacats",
+    "first_project_description": "Eina gratuïta en Next.js per convertir formats d'imatge (PNG a WebP, etc.), reduir qualitat i fer resize, en una imatge o en lot. La vaig construir en el meu temps lliure després de veure que les alternatives existents limiten la funcionalitat real darrere d'un mur de pagament, avui la faig servir de forma regular en els meus projectes personals.",
+    "second_project_description": "Aplicació web per guardar i consultar receptes pròpies, amb registre d'usuari i marcatge de passos completats en temps real. Construïda amb Next.js, .NET Core, Docker i PostgreSQL. La vaig desenvolupar per plaer, pensada per cuinar amb la tauleta al costat."
+  },
+  "ProjectCard": {
+    "link_text": "Veure projecte"
+  },
   "TestPage": {
     "title": "Sistema de Disseny",
     "subtitle": "Portfoli de Sergi Mitjavila — Estructura d'Atomic Design",
@@ -76,7 +85,6 @@
     "organisms_description": "Seccions d'UI complexes compostes per molècules — targetes, entrades de timeline, grups d'stack",
     "organisms_projectcard_label": "ProjectCard",
     "organisms_projectcard_name": "CloudSync Dashboard",
-    "organisms_projectcard_description": "Dashboard d'analítica en temps real construït amb React i microserveis .NET Core.",
-    "organisms_projectcard_link_text": "Veure projecte"
+    "organisms_projectcard_description": "Dashboard d'analítica en temps real construït amb React i microserveis .NET Core."
   }
 }
