@@ -1,14 +1,17 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { Link } from '@/components/atoms/Link';
 import { Tag } from '@/components/atoms/Tag';
+import { IconArrowRightAlt } from '@/components/atoms/icons';
 
 const Container = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[16]};
-  max-width: 20rem;
+  max-width: 21.5rem;
   padding-bottom: 1.25rem;
   background: ${({ theme }) => theme.colors.bg.surface};
   border-radius: 0.75rem;
@@ -18,7 +21,7 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20rem;
+  max-width: 21.5rem;
   height: 180px;
   background: oklch(79.71% 0.1339 211.53deg / 8%);
   border-radius: 0.75rem 0.75rem 0 0;
@@ -28,13 +31,22 @@ const HeaderImage = styled(Image)`
   align-self: stretch;
   width: 100%;
   height: auto;
+  border-radius: 0.75rem 0.75rem 0 0;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[16]};
+  justify-content: space-between;
+  height: stretch;
   padding: 0 1.25rem;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing[16]};
 `;
 
 const TextWrapper = styled.div`
@@ -73,11 +85,12 @@ interface ProjectCardProps {
   projectName: string;
   projectDescription: string;
   techBadges: string[];
-  linkText: string;
   linkHref: string;
 }
 
 function _ProjectCard({ ...props }: ProjectCardProps) {
+  const t = useTranslations('ProjectCard');
+
   return (
     <Container>
       <ImageContainer>
@@ -91,17 +104,25 @@ function _ProjectCard({ ...props }: ProjectCardProps) {
         )}
       </ImageContainer>
       <InfoContainer>
-        <TextWrapper>
-          <ProjectTitle>{props.projectName}</ProjectTitle>
-          <ProjectDescription>{props.projectDescription}</ProjectDescription>
-        </TextWrapper>
-        <TagsContainer>
-          {props.techBadges &&
-            props.techBadges.map((badge, index) => (
-              <Tag key={index} text={badge} />
-            ))}
-        </TagsContainer>
-        <Link text={props.linkText} href={props.linkHref} />
+        <Wrapper>
+          <TextWrapper>
+            <ProjectTitle>{props.projectName}</ProjectTitle>
+            <ProjectDescription>{props.projectDescription}</ProjectDescription>
+          </TextWrapper>
+        </Wrapper>
+        <Wrapper>
+          <TagsContainer>
+            {props.techBadges &&
+              props.techBadges.map((badge, index) => (
+                <Tag key={index} text={badge} />
+              ))}
+          </TagsContainer>
+          <Link
+            text={t('link_text')}
+            href={props.linkHref}
+            iconRight={<IconArrowRightAlt />}
+          />
+        </Wrapper>
       </InfoContainer>
     </Container>
   );

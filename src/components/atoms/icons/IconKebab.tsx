@@ -12,7 +12,7 @@ const IconKebab = React.forwardRef<SVGSVGElement, IIconParams>(
       style,
       className,
       stroke = 'currentColor',
-      viewBox = '0 0 24 24',
+      viewBox = '0 -960 960 960',
       ariaLabel = 'icon',
     },
     ref
@@ -37,38 +37,9 @@ const IconKebab = React.forwardRef<SVGSVGElement, IIconParams>(
         viewBox={viewBox}
         style={removeInlineStyle ? undefined : mergedStyle}
       >
-        <line
-          x1="4"
-          x2="20"
-          y1="12"
-          y2="12"
-          stroke={stroke}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <line
-          x1="4"
-          x2="20"
-          y1="6"
-          y2="6"
-          stroke={stroke}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <line
-          x1="4"
-          x2="20"
-          y1="18"
-          y2="18"
-          stroke={stroke}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
+        <path
+          d="M120-240v-60h720v60H120Zm0-210v-60h720v60H120Zm0-210v-60h720v60H120Z"
+          fill={disableFill ? 'none' : (color ?? stroke ?? 'currentColor')}
         />
       </svg>
     );

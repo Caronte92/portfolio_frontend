@@ -41,15 +41,18 @@ export const PageTest = styled.div`
 export const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[20]};
+  gap: ${({ theme }) => theme.spacing[48]};
+  width: 100%;
   max-width: 75rem;
   margin: 5rem auto;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: auto;
     margin: 5rem 3rem;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    gap: ${({ theme }) => theme.spacing[32]};
     margin: 3rem 1.25rem;
   }
 `;

@@ -21,6 +21,15 @@
     "button_work": "View My Work",
     "button_talk": "Let's Talk"
   },
+  "Projects": {
+    "title": "02 / PROJECTS",
+    "subtitle": "Featured technical case studies",
+    "first_project_description": "Free Next.js tool for converting image formats (PNG to WebP, etc.), reducing quality, and resizing, for a single image or in batch. I built it in my spare time after noticing that existing alternatives lock real functionality behind a paywall; I now use it regularly in my personal projects.",
+    "second_project_description": "Web app for saving and browsing your own recipes, with user registration and real-time step completion tracking. Built with Next.js, .NET Core, Docker, and PostgreSQL. I developed it for fun, designed for cooking with a tablet by your side."
+  },
+  "ProjectCard": {
+    "link_text": "View project"
+  },
   "TestPage": {
     "title": "Design System",
     "subtitle": "Sergi Mitjavila Portfolio — Atomic Design Structure",
@@ -72,7 +81,6 @@
     "organisms_description": "Complex UI sections composed from molecules — cards, timeline entries, stack groups",
     "organisms_projectcard_label": "ProjectCard",
     "organisms_projectcard_name": "CloudSync Dashboard",
-    "organisms_projectcard_description": "Real-time analytics dashboard built with React and .NET Core microservices.",
-    "organisms_projectcard_link_text": "View Project"
+    "organisms_projectcard_description": "Real-time analytics dashboard built with React and .NET Core microservices."
   }
 }

@@ -436,7 +436,6 @@ function _TestPage() {
             projectName={t('organisms_projectcard_name')}
             projectDescription={t('organisms_projectcard_description')}
             techBadges={['React.js', '.NET Core', 'AWS']}
-            linkText={t('organisms_projectcard_link_text')}
             linkHref={'/es/test'}
           />
         </Section>

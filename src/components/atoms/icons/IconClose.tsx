@@ -12,7 +12,7 @@ const IconClose = React.forwardRef<SVGSVGElement, IIconParams>(
       style,
       className,
       stroke = 'currentColor',
-      viewBox = '0 0 24 24',
+      viewBox = '0 -960 960 960',
       ariaLabel = 'Close',
     },
     ref
@@ -37,27 +37,9 @@ const IconClose = React.forwardRef<SVGSVGElement, IIconParams>(
         viewBox={viewBox}
         style={removeInlineStyle ? undefined : mergedStyle}
       >
-        <line
-          x1="18"
-          y1="6"
-          x2="6"
-          y2="18"
-          stroke={stroke}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-        <line
-          x1="6"
-          y1="6"
-          x2="18"
-          y2="18"
-          stroke={stroke}
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
+        <path
+          d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z"
+          fill={disableFill ? 'none' : (color ?? stroke ?? 'currentColor')}
         />
       </svg>
     );

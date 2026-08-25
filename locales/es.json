@@ -21,6 +21,15 @@
     "button_work": "Ver Mi Trabajo",
     "button_talk": "Hablemos"
   },
+  "Projects": {
+    "title": "02 / PROYECTOS",
+    "subtitle": "Casos de estudio técnicos destacados",
+    "first_project_description": "Herramienta gratuita en Next.js para convertir formatos de imagen (PNG a WebP, etc.), reducir calidad y hacer resize, en una imagen o en lote. La construí en mi tiempo libre tras ver que las alternativas existentes limitan la funcionalidad real detrás de un muro de pago, hoy la uso de forma regular en mis proyectos personales.",
+    "second_project_description": "Aplicación web para guardar y consultar recetas propias, con registro de usuario y marcado de pasos completados en tiempo real. Construida con Next.js, .NET Core, Docker y PostgreSQL. La desarrollé por placer, pensada para cocinar con la tablet al lado."
+  },
+  "ProjectCard": {
+    "link_text": "Ver proyecto"
+  },
   "TestPage": {
     "title": "Sistema de Diseño",
     "subtitle": "Portfolio de Sergi Mitjavila — Estructura de Atomic Design",
@@ -72,7 +81,6 @@
     "organisms_description": "Secciones de UI complejas compuestas por moléculas — tarjetas, entradas de timeline, grupos de stack",
     "organisms_projectcard_label": "ProjectCard",
     "organisms_projectcard_name": "CloudSync Dashboard",
-    "organisms_projectcard_description": "Dashboard de analítica en tiempo real construido con React y microservicios .NET Core.",
-    "organisms_projectcard_link_text": "Ver proyecto"
+    "organisms_projectcard_description": "Dashboard de analítica en tiempo real construido con React y microservicios .NET Core."
   }
 }
