@@ -17,6 +17,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
 };
 
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Sergi Mitjavila',
+  jobTitle: 'Senior Fullstack Developer',
+  url: SITE_URL,
+  image: `${SITE_URL}/profile.png`,
+  sameAs: [
+    'https://github.com/Caronte92/',
+    'https://www.linkedin.com/in/sergi-mitjavila',
+  ],
+};
+
 interface ILayoutProps {
   params: Promise<{ lang: string }>;
   children: React.ReactNode;
@@ -29,6 +42,10 @@ export default async function RootLayout({ children, params }: ILayoutProps) {
   return (
     <html lang={lang} className={workSans.variable}>
       <body suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
         <NextIntlClientProvider messages={messages}>
           <StyledComponentsRegistry>
             <BaseLayout>{children}</BaseLayout>

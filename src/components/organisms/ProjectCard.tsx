@@ -28,9 +28,9 @@ const ImageContainer = styled.div`
 `;
 
 const HeaderImage = styled(Image)`
-  align-self: stretch;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   border-radius: 0.75rem 0.75rem 0 0;
 `;
 

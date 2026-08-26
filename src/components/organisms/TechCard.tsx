@@ -18,7 +18,7 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.span`
+const Title = styled.h3`
   font-size: ${({ theme }) => theme.font.size.h4.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.size.h4.lineHeight};

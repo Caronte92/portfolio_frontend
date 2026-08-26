@@ -8,7 +8,7 @@ const Container = styled.div`
   gap: ${({ theme }) => theme.spacing[12]};
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size.display.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.size.display.lineHeight};

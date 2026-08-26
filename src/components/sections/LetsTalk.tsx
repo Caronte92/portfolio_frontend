@@ -28,7 +28,7 @@ const InfoContainer = styled.div`
   }
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   font-size: ${({ theme }) => theme.font.size.display.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
   line-height: ${({ theme }) => theme.font.size.display.lineHeight};

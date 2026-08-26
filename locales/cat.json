@@ -5,10 +5,8 @@
   },
   "Header": {
     "button_contact": "Parlem",
-    "nav_section_about": "Sobre",
     "nav_section_stack": "Tecnologies",
     "nav_section_projects": "Projectes",
-    "nav_section_experience": "Experiència",
     "nav_section_contact": "Contacte"
   },
   "Footer": {
@@ -29,6 +27,7 @@
     "title": "02 / PROJECTES",
     "subtitle": "Casos d'estudi tècnics destacats",
     "first_project_description": "Eina gratuïta en Next.js per convertir formats d'imatge (PNG a WebP, etc.), reduir qualitat i fer resize, en una imatge o en lot. La vaig construir en el meu temps lliure després de veure que les alternatives existents limiten la funcionalitat real darrere d'un mur de pagament, avui la faig servir de forma regular en els meus projectes personals.",
+    "first_project_alt": "Pantalla principal d'Image Processor mostrant les eines de conversió de format i redimensionament d'imatges",
     "second_project_description": "Aplicació web per guardar i consultar receptes pròpies, amb registre d'usuari i marcatge de passos completats en temps real. Construïda amb Next.js, .NET Core, Docker i PostgreSQL. La vaig desenvolupar per plaer, pensada per cuinar amb la tauleta al costat."
   },
   "TechStack": {

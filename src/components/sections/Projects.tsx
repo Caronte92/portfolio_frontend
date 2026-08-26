@@ -24,7 +24,7 @@ function _Projects() {
       <ContentContainer>
         <ProjectCard
           headerImage="/projects/image_processor.webp"
-          altImage={'image project capture'}
+          altImage={t('first_project_alt')}
           projectName={'Image Processor'}
           projectDescription={t('first_project_description')}
           techBadges={['Next.js', 'Typescript']}

@@ -5,10 +5,8 @@
   },
   "Header": {
     "button_contact": "Let's Talk",
-    "nav_section_about": "About",
     "nav_section_stack": "Stack",
     "nav_section_projects": "Projects",
-    "nav_section_experience": "Experience",
     "nav_section_contact": "Contact"
   },
   "Footer": {
@@ -29,6 +27,7 @@
     "title": "02 / PROJECTS",
     "subtitle": "Featured technical case studies",
     "first_project_description": "Free Next.js tool for converting image formats (PNG to WebP, etc.), reducing quality, and resizing, for a single image or in batch. I built it in my spare time after noticing that existing alternatives lock real functionality behind a paywall; I now use it regularly in my personal projects.",
+    "first_project_alt": "Image Processor home screen showing image format conversion and resizing tools",
     "second_project_description": "Web app for saving and browsing your own recipes, with user registration and real-time step completion tracking. Built with Next.js, .NET Core, Docker, and PostgreSQL. I developed it for fun, designed for cooking with a tablet by your side."
   },
   "TechStack": {

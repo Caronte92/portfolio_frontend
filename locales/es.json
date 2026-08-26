@@ -5,10 +5,8 @@
   },
   "Header": {
     "button_contact": "Hablemos",
-    "nav_section_about": "Acerca de",
     "nav_section_stack": "Tecnologías",
     "nav_section_projects": "Proyectos",
-    "nav_section_experience": "Experiencia",
     "nav_section_contact": "Contacto"
   },
   "Footer": {
@@ -29,6 +27,7 @@
     "title": "02 / PROYECTOS",
     "subtitle": "Casos de estudio técnicos destacados",
     "first_project_description": "Herramienta gratuita en Next.js para convertir formatos de imagen (PNG a WebP, etc.), reducir calidad y hacer resize, en una imagen o en lote. La construí en mi tiempo libre tras ver que las alternativas existentes limitan la funcionalidad real detrás de un muro de pago, hoy la uso de forma regular en mis proyectos personales.",
+    "first_project_alt": "Pantalla principal de Image Processor mostrando las herramientas de conversión de formato y redimensionado de imágenes",
     "second_project_description": "Aplicación web para guardar y consultar recetas propias, con registro de usuario y marcado de pasos completados en tiempo real. Construida con Next.js, .NET Core, Docker y PostgreSQL. La desarrollé por placer, pensada para cocinar con la tablet al lado."
   },
   "TechStack": {

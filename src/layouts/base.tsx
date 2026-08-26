@@ -19,7 +19,7 @@ const Shell = styled.div`
   min-height: 100dvh;
 `;
 
-const Content = styled.div`
+const Content = styled.main`
   flex: 1;
 `;
 

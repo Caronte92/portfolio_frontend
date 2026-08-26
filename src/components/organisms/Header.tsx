@@ -260,10 +260,8 @@ function _Header() {
           </LogoWrapper>
           <ActionsWrapper>
             {/* <Nav>
-              <Button text={t('nav_section_about')} variant="link" />
               <Button text={t('nav_section_stack')} variant="link" />
               <Button text={t('nav_section_projects')} variant="link" />
-              <Button text={t('nav_section_experience')} variant="link" />
               <Button text={t('nav_section_contact')} variant="link" />
             </Nav> */}
             <LanguageSwitcher />
@@ -289,16 +287,10 @@ function _Header() {
         </MobileMenuHeader>
         <MobileMenuContent>
           {/* <MobileNavLink onClick={handleNavClick}>
-            {t('nav_section_about')}
-          </MobileNavLink>
-          <MobileNavLink onClick={handleNavClick}>
             {t('nav_section_stack')}
           </MobileNavLink>
           <MobileNavLink onClick={handleNavClick}>
             {t('nav_section_projects')}
-          </MobileNavLink>
-          <MobileNavLink onClick={handleNavClick}>
-            {t('nav_section_experience')}
           </MobileNavLink>
           <MobileNavLink onClick={handleNavClick}>
             {t('nav_section_contact')}
