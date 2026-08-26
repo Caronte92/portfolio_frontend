@@ -31,6 +31,10 @@
     "first_project_description": "Eina gratuïta en Next.js per convertir formats d'imatge (PNG a WebP, etc.), reduir qualitat i fer resize, en una imatge o en lot. La vaig construir en el meu temps lliure després de veure que les alternatives existents limiten la funcionalitat real darrere d'un mur de pagament, avui la faig servir de forma regular en els meus projectes personals.",
     "second_project_description": "Aplicació web per guardar i consultar receptes pròpies, amb registre d'usuari i marcatge de passos completats en temps real. Construïda amb Next.js, .NET Core, Docker i PostgreSQL. La vaig desenvolupar per plaer, pensada per cuinar amb la tauleta al costat."
   },
+  "TechStack": {
+    "title": "03 / TECNOLOGIES",
+    "subtitle": "El meu ecosistema especialitzat d'eines i llenguatges"
+  },
   "ProjectCard": {
     "link_text": "Veure projecte"
   },

@@ -4,6 +4,7 @@ import React from 'react';
 import { Hero } from '@/components/sections/Hero';
 import { LetsTalk } from '@/components/sections/LetsTalk';
 import { Projects } from '@/components/sections/Projects';
+import { TechStack } from '@/components/sections/TechStack';
 import { Page } from '../styles/home.styles';
 
 function _Home() {
@@ -11,6 +12,7 @@ function _Home() {
     <Page>
       <Hero />
       <Projects />
+      <TechStack />
       <LetsTalk />
     </Page>
   );

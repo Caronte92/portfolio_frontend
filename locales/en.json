@@ -31,6 +31,10 @@
     "first_project_description": "Free Next.js tool for converting image formats (PNG to WebP, etc.), reducing quality, and resizing, for a single image or in batch. I built it in my spare time after noticing that existing alternatives lock real functionality behind a paywall; I now use it regularly in my personal projects.",
     "second_project_description": "Web app for saving and browsing your own recipes, with user registration and real-time step completion tracking. Built with Next.js, .NET Core, Docker, and PostgreSQL. I developed it for fun, designed for cooking with a tablet by your side."
   },
+  "TechStack": {
+    "title": "03 / TECH STACK",
+    "subtitle": "My specialized ecosystem of tools & languages"
+  },
   "ProjectCard": {
     "link_text": "View project"
   },

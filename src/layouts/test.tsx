@@ -12,6 +12,7 @@ import IconLanguage from '@/components/atoms/icons/IconLanguage';
 import { Dropdown, DropdownOption } from '@/components/molecules/Dropdown';
 import { SocialLink } from '@/components/molecules/SocialLink';
 import { ProjectCard } from '@/components/organisms/ProjectCard';
+import { TechCard } from '@/components/organisms/TechCard';
 import { PageTest } from '@/styles/home.styles';
 import type { spacing } from '@/styles/spacing';
 
@@ -438,6 +439,7 @@ function _TestPage() {
             techBadges={['React.js', '.NET Core', 'AWS']}
             linkHref={'/es/test'}
           />
+          <TechCard title="test" stackPills={['React.js', '.NET']} />
         </Section>
       </BodySections>
     </PageTest>
