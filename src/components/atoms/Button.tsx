@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '@/styles/colors';
 
-type ButtonVariant = 'primary' | 'ghost';
+type ButtonVariant = 'primary' | 'ghost' | 'link';
 type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export const ButtonType = {
@@ -60,6 +60,33 @@ export const ButtonType = {
       background: 'transparent',
       color: colors.text.muted,
       border: 'oklch(1 0 0 / 10%)',
+    },
+  },
+  link: {
+    neutral: {
+      background: 'transparent',
+      color: colors.text.primary,
+      border: 'transparent',
+    },
+    hover: {
+      background: 'transparent',
+      color: colors.text.secondary,
+      border: 'transparent',
+    },
+    focus: {
+      background: 'transparent',
+      color: colors.text.secondary,
+      border: 'transparent',
+    },
+    active: {
+      background: 'transparent',
+      color: colors.text.secondary,
+      border: 'transparent',
+    },
+    disabled: {
+      background: 'transparent',
+      color: colors.text.muted,
+      border: 'transparent',
     },
   },
 };

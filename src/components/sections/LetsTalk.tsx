@@ -73,7 +73,7 @@ function _LetsTalk() {
   const t = useTranslations('LetsTalk');
 
   return (
-    <SectionContainer>
+    <SectionContainer id="contact">
       <Container>
         <InfoContainer>
           <Title>{t('title')}</Title>

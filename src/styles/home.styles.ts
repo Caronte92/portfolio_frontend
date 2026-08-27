@@ -45,6 +45,7 @@ export const SectionContainer = styled.section`
   width: 100%;
   max-width: 75rem;
   margin: 5rem auto;
+  scroll-margin-top: var(--header-height, 5.5rem);
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: auto;

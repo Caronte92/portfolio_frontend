@@ -19,7 +19,7 @@ function _TechStack() {
   const t = useTranslations('TechStack');
 
   return (
-    <SectionContainer>
+    <SectionContainer id="stack">
       <HeaderSection title={t('title')} subtitle={t('subtitle')} />
       <CardsContainer>
         <TechCard

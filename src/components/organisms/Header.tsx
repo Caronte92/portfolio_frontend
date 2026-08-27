@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
-// import { useTranslations } from 'next-intl';
-import { useParams, useRouter, usePathname } from 'next/navigation';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslations } from 'next-intl';
+import * as navigation from 'next/navigation';
 import styled from 'styled-components';
+import { Button } from '@/components/atoms/Button';
 import { IconClose, IconKebab, IconLogo } from '@/components/atoms/icons/';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher';
 import type { Locale } from '../../../i18n-config';
@@ -73,12 +74,13 @@ const IconKebabWrapper = styled.div`
 `;
 
 const ActionsWrapper = styled.div`
-  display: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  width: 100%;
 
-  @media (min-width: ${({ theme }) => theme.breakpoints.lg}) {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    display: none;
   }
 `;
 
@@ -92,12 +94,12 @@ const ActionsWrapperMobile = styled.div`
   }
 `;
 
-// const Nav = styled.nav`
-//   display: flex;
-//   gap: 1.25rem;
-//   justify-content: space-between;
-//   margin: 0 auto;
-// `;
+const Nav = styled.nav`
+  display: flex;
+  gap: 1.25rem;
+  justify-content: space-between;
+  margin: 0 auto;
+`;
 
 const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
   position: fixed;
@@ -136,22 +138,22 @@ const MobileMenuContent = styled.nav`
   padding: 0.5rem 1.5rem 1.5rem;
 `;
 
-// const MobileNavLink = styled.button`
-//   padding: 0.75rem 0;
-//   font-family: ${({ theme }) => theme.font.family.sans};
-//   font-size: ${({ theme }) => theme.font.size.base};
-//   font-weight: ${({ theme }) => theme.font.weight.medium};
-//   color: ${({ theme }) => theme.colors.textSecondary};
-//   text-align: left;
-//   cursor: pointer;
-//   background: none;
-//   border: none;
-//   transition: color 0.15s ease;
+const MobileNavLink = styled.button`
+  padding: 0.75rem 0;
+  font-family: ${({ theme }) => theme.font.family.sans};
+  font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  color: ${({ theme }) => theme.colors.text.secondary};
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.15s ease;
 
-//   &:hover {
-//     color: ${({ theme }) => theme.colors.textPrimary};
-//   }
-// `;
+  &:hover {
+    color: ${({ theme }) => theme.colors.text.primary};
+  }
+`;
 
 const MobileLanguageSwitcher = styled.div`
   display: flex;
@@ -206,15 +208,39 @@ const LANGUAGES = [
   { value: 'cat', label: 'CAT' },
 ] as const;
 
+const NAV_SECTIONS = [
+  { id: 'projects', labelKey: 'nav_section_projects' },
+  { id: 'stack', labelKey: 'nav_section_stack' },
+  { id: 'contact', labelKey: 'nav_section_contact' },
+] as const;
+
 function _Header() {
-  // const t = useTranslations('Header');
-  const router = useRouter();
-  const pathname = usePathname();
-  const params = useParams();
+  const t = useTranslations('Header');
+  const router = navigation.useRouter();
+  const pathname = navigation.usePathname();
+  const params = navigation.useParams();
   const currentLang = (params.lang as Locale) ?? 'en';
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const headerElement = headerRef.current;
+    if (!headerElement) return;
+
+    const setHeaderHeightVar = () => {
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${headerElement.offsetHeight}px`
+      );
+    };
+
+    setHeaderHeightVar();
+    const resizeObserver = new ResizeObserver(setHeaderHeightVar);
+    resizeObserver.observe(headerElement);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   const handleScroll = useCallback(() => {
     const scrollTop =
@@ -247,23 +273,33 @@ function _Header() {
     setMobileMenuOpen(false);
   }, []);
 
+  const handleSectionNavClick = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  }, []);
+
   const toggleMobileMenu = useCallback(() => {
     setMobileMenuOpen((prev) => !prev);
   }, []);
 
   return (
     <>
-      <Container $scrolled={scrolled}>
+      <Container ref={headerRef} $scrolled={scrolled}>
         <HeaderWrapper>
           <LogoWrapper href="/">
             <IconLogo size="100%" />
           </LogoWrapper>
           <ActionsWrapper>
-            {/* <Nav>
-              <Button text={t('nav_section_stack')} variant="link" />
-              <Button text={t('nav_section_projects')} variant="link" />
-              <Button text={t('nav_section_contact')} variant="link" />
-            </Nav> */}
+            <Nav>
+              {NAV_SECTIONS.map(({ id, labelKey }) => (
+                <Button
+                  key={id}
+                  text={t(labelKey)}
+                  variant="link"
+                  onClick={() => handleSectionNavClick(id)}
+                />
+              ))}
+            </Nav>
             <LanguageSwitcher />
           </ActionsWrapper>
           <ActionsWrapperMobile>
@@ -286,15 +322,11 @@ function _Header() {
           </ActionsWrapperMobile>
         </MobileMenuHeader>
         <MobileMenuContent>
-          {/* <MobileNavLink onClick={handleNavClick}>
-            {t('nav_section_stack')}
-          </MobileNavLink>
-          <MobileNavLink onClick={handleNavClick}>
-            {t('nav_section_projects')}
-          </MobileNavLink>
-          <MobileNavLink onClick={handleNavClick}>
-            {t('nav_section_contact')}
-          </MobileNavLink> */}
+          {NAV_SECTIONS.map(({ id, labelKey }) => (
+            <MobileNavLink key={id} onClick={() => handleSectionNavClick(id)}>
+              {t(labelKey)}
+            </MobileNavLink>
+          ))}
           <MobileLanguageSwitcher>
             {LANGUAGES.map((lang) => (
               <LanguagePill

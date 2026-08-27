@@ -19,7 +19,7 @@ function _Projects() {
   const t = useTranslations('Projects');
 
   return (
-    <SectionContainer>
+    <SectionContainer id="projects">
       <HeaderSection title={t('title')} subtitle={t('subtitle')} />
       <ContentContainer>
         <ProjectCard
