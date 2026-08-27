@@ -103,8 +103,10 @@ const StyledButton = styled.button<StyledProps>`
   align-items: center;
   justify-content: center;
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
-  padding: ${({ theme }) => theme.spacing[12]}
-    ${({ theme }) => theme.spacing[24]};
+
+  /* prettier-ignore */
+  padding: ${({ theme }) => theme.spacing[12]} ${({ theme }) =>
+    theme.spacing[24]};
   font-family: ${({ theme }) => theme.font.family.sans};
   font-size: ${({ theme }) => theme.font.size.bodySmall.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.semibold};
