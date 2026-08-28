@@ -7,10 +7,8 @@
     "button_contact": "Let's Talk",
     "nav_section_stack": "Stack",
     "nav_section_projects": "Projects",
-    "nav_section_contact": "Contact"
-  },
-  "Footer": {
-    "built_with": "Built with Next.js"
+    "nav_section_contact": "Contact",
+    "nav_section_about_me": "About Me"
   },
   "Hero": {
     "eyebrow": "Next.js & React, .NET Core, TypeScript",
@@ -29,6 +27,17 @@
     "first_project_description": "Free Next.js tool for converting image formats (PNG to WebP, etc.), reducing quality, and resizing, for a single image or in batch. I built it in my spare time after noticing that existing alternatives lock real functionality behind a paywall; I now use it regularly in my personal projects.",
     "first_project_alt": "Image Processor home screen showing image format conversion and resizing tools",
     "second_project_description": "Web app for saving and browsing your own recipes, with user registration and real-time step completion tracking. Built with Next.js, .NET Core, Docker, and PostgreSQL. I developed it for fun, designed for cooking with a tablet by your side."
+  },
+  "AboutMe": {
+    "title": "03 / ABOUT ME",
+    "subtitle": "Crafting high-performance digital architectures",
+    "paragraph_1": "Full Stack Developer with 6 years of experience in frontend and backend development, specialized in clean code and clean architecture to build scalable, easy-to-maintain products. Experienced with .NET Core, React, Next.js, TypeScript and PostgreSQL, working with microservices, REST APIs and Agile/Scrum methodologies on projects focused on user acquisition and conversion.",
+    "paragraph_2": "My approach starts with thinking before building: clean code, decoupled architectures and good practices that let the product grow without piling up technical debt. I'm involved across the whole development cycle, from new features to performance optimization, accessibility and SEO, using tools like Docker and GA4 for monitoring and continuous improvement.",
+    "paragraph_3": "Currently Senior Full Stack Developer at GoStudent, building new acquisition and conversion projects while streamlining, automating and maintaining existing systems.",
+    "paragraph_4": "When I'm not coding, you'll find me in the mountains, in the snow or with a book in hand.",
+    "card_role_value": "Senior Fullstack",
+    "card_focus_value": "Clean code",
+    "card_loves": ["Frontend", "Performance", "Reading", "Hiking"]
   },
   "TechStack": {
     "title": "03 / TECH STACK",

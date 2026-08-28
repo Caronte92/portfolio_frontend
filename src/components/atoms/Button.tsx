@@ -158,6 +158,18 @@ const StyledButton = styled.button<StyledProps>`
   }
 `;
 
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+    width: 1rem;
+    height: 1rem;
+  }
+`;
+
 export interface ButtonProps extends Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   'children'
@@ -213,9 +225,9 @@ const _Button = ({
         ? { 'data-href': href, 'data-target': target, 'data-rel': rel }
         : {})}
     >
-      {iconLeft}
+      {iconLeft && <IconWrapper>{iconLeft}</IconWrapper>}
       {text && text}
-      {iconRight}
+      {iconRight && <IconWrapper>{iconRight}</IconWrapper>}
     </StyledButton>
   );
 };

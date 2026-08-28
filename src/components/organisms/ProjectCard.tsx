@@ -13,7 +13,7 @@ const Container = styled.div`
   background: ${({ theme }) => theme.colors.bg.surface};
   border-radius: 0.75rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     flex-direction: column;
     gap: ${({ theme }) => theme.spacing[16]};
     max-width: 21.5rem;
@@ -23,6 +23,7 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -32,7 +33,7 @@ const ImageContainer = styled.div`
   background: oklch(79.71% 0.1339 211.53deg / 8%);
   border-radius: 0.75rem 0 0 0.75rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     height: 180px;
     padding: 0.5rem;
     border-radius: 0.75rem 0.75rem 0 0;
@@ -48,13 +49,14 @@ const HeaderImage = styled(Image)`
 
 const InfoContainer = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing[16]};
   justify-content: space-between;
   height: stretch;
-  padding: 1.25rem 11rem 1.25rem 0;
+  padding: 1.25rem 6rem 1.25rem 0;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 0 1.25rem;
   }
 `;

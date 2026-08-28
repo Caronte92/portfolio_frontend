@@ -8,6 +8,11 @@ import { SectionContainer } from '@/styles/home.styles';
 const ContentContainer = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacing[24]};
+  width: 66%;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    width: auto;
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     flex-direction: column;

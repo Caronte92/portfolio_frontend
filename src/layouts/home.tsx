@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { AboutMe } from '@/components/sections/AboutMe';
 import { Hero } from '@/components/sections/Hero';
 import { LetsTalk } from '@/components/sections/LetsTalk';
 import { Projects } from '@/components/sections/Projects';
@@ -13,6 +14,7 @@ function _Home() {
       <Hero />
       <Projects />
       <TechStack />
+      <AboutMe />
       <LetsTalk />
     </Page>
   );

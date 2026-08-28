@@ -212,6 +212,7 @@ const NAV_SECTIONS = [
   { id: 'projects', labelKey: 'nav_section_projects' },
   { id: 'stack', labelKey: 'nav_section_stack' },
   { id: 'contact', labelKey: 'nav_section_contact' },
+  { id: 'aboutMe', labelKey: 'nav_section_about_me' },
 ] as const;
 
 function _Header() {

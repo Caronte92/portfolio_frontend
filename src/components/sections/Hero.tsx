@@ -42,9 +42,8 @@ const HeroWrapper = styled.div`
   width: 60%;
   text-align: left;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     width: 100%;
-    text-align: center;
   }
 `;
 

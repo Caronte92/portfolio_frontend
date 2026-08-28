@@ -7,10 +7,8 @@
     "button_contact": "Parlem",
     "nav_section_stack": "Tecnologies",
     "nav_section_projects": "Projectes",
-    "nav_section_contact": "Contacte"
-  },
-  "Footer": {
-    "built_with": "Fet amb Next.js"
+    "nav_section_contact": "Contacte",
+    "nav_section_about_me": "Sobre mi"
   },
   "Hero": {
     "eyebrow": "Next.js & React, .NET Core, TypeScript",
@@ -29,6 +27,17 @@
     "first_project_description": "Eina gratuïta en Next.js per convertir formats d'imatge (PNG a WebP, etc.), reduir qualitat i fer resize, en una imatge o en lot. La vaig construir en el meu temps lliure després de veure que les alternatives existents limiten la funcionalitat real darrere d'un mur de pagament, avui la faig servir de forma regular en els meus projectes personals.",
     "first_project_alt": "Pantalla principal d'Image Processor mostrant les eines de conversió de format i redimensionament d'imatges",
     "second_project_description": "Aplicació web per guardar i consultar receptes pròpies, amb registre d'usuari i marcatge de passos completats en temps real. Construïda amb Next.js, .NET Core, Docker i PostgreSQL. La vaig desenvolupar per plaer, pensada per cuinar amb la tauleta al costat."
+  },
+  "AboutMe": {
+    "title": "03 / SOBRE MI",
+    "subtitle": "Dissenyant arquitectures digitals d'alt rendiment",
+    "paragraph_1": "Full Stack Developer amb 6 anys d'experiència en desenvolupament frontend i backend, especialitzat en clean code i clean architecture per construir productes escalables i fàcils de mantenir. Experiència amb .NET Core, React, Next.js, TypeScript i PostgreSQL, treballant amb microserveis, APIs REST i metodologies Agile/Scrum en projectes orientats a captació i conversió d'usuaris.",
+    "paragraph_2": "El meu enfocament parteix de pensar abans de construir: codi net, arquitectures desacoblades i bones pràctiques que faciliten que el producte creixi sense acumular deute tècnic. Participo en tot el cicle de desenvolupament, des de noves funcionalitats fins a optimització de rendiment, accessibilitat i SEO, fent servir eines com Docker i GA4 per a monitorització i millora contínua.",
+    "paragraph_3": "Actualment Senior Full Stack Developer a GoStudent, desenvolupant nous projectes de captació i conversió, a més d'agilitzar, automatitzar i mantenir sistemes existents.",
+    "paragraph_4": "Quan no estic programant, em trobaràs a la muntanya, entre neu o amb un llibre a les mans.",
+    "card_role_value": "Fullstack Senior",
+    "card_focus_value": "Codi net",
+    "card_loves": ["Frontend", "Rendiment", "Lectura", "Muntanya"]
   },
   "TechStack": {
     "title": "03 / TECNOLOGIES",

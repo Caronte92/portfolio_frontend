@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslations } from 'next-intl';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 
@@ -23,12 +22,10 @@ const Text = styled.label`
 `;
 
 function _Footer() {
-  const t = useTranslations('Footer');
-
   return (
     <Container>
       <Text>© 2026 Sergi Mitjavila</Text>
-      <Text>{t('built_with')}</Text>
+      <Text>Next.js · TypeScript · Styled Components</Text>
     </Container>
   );
 }
