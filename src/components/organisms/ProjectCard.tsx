@@ -9,29 +9,43 @@ import { IconArrowRightAlt } from '@/components/atoms/icons';
 const Container = styled.div`
   display: flex;
   flex: 1;
-  flex-direction: column;
-  gap: ${({ theme }) => theme.spacing[16]};
-  max-width: 21.5rem;
-  padding-bottom: 1.25rem;
+  gap: ${({ theme }) => theme.spacing[32]};
   background: ${({ theme }) => theme.colors.bg.surface};
   border-radius: 0.75rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    flex-direction: column;
+    gap: ${({ theme }) => theme.spacing[16]};
+    max-width: 21.5rem;
+    padding: 0 0 1.25rem;
+  }
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   max-width: 21.5rem;
-  height: 180px;
+  height: 100%;
   background: oklch(79.71% 0.1339 211.53deg / 8%);
-  border-radius: 0.75rem 0.75rem 0 0;
+  border-radius: 0.75rem 0 0 0.75rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    height: 180px;
+    border-radius: 0.75rem 0.75rem 0 0;
+  }
 `;
 
 const HeaderImage = styled(Image)`
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 0.75rem 0.75rem 0 0;
+  object-fit: fill;
+  border-radius: 0.75rem 0 0 0.75rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    border-radius: 0.75rem 0.75rem 0 0;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -40,7 +54,11 @@ const InfoContainer = styled.div`
   gap: ${({ theme }) => theme.spacing[16]};
   justify-content: space-between;
   height: stretch;
-  padding: 0 1.25rem;
+  padding: 1.25rem 11rem 1.25rem 0;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+    padding: 0 1.25rem;
+  }
 `;
 
 const Wrapper = styled.div`

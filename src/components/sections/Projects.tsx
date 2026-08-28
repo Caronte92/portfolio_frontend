@@ -23,7 +23,7 @@ function _Projects() {
       <HeaderSection title={t('title')} subtitle={t('subtitle')} />
       <ContentContainer>
         <ProjectCard
-          headerImage="/projects/image_processor.webp"
+          headerImage="/projects/image-processor.webp"
           altImage={t('first_project_alt')}
           projectName={'Image Processor'}
           projectDescription={t('first_project_description')}
