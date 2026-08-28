@@ -77,7 +77,6 @@ const ActionsWrapper = styled.div`
   display: flex;
   gap: 1.5rem;
   align-items: center;
-  width: 100%;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     display: none;
@@ -95,10 +94,24 @@ const ActionsWrapperMobile = styled.div`
 `;
 
 const Nav = styled.nav`
-  display: flex;
+  display: none;
   gap: 1.25rem;
   justify-content: space-between;
   margin: 0 auto;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: flex;
+  }
+`;
+
+const MobileNavLinksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    display: none;
+  }
 `;
 
 const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
@@ -290,17 +303,17 @@ function _Header() {
           <LogoWrapper href="/">
             <IconLogo size="100%" />
           </LogoWrapper>
+          <Nav>
+            {NAV_SECTIONS.map(({ id, labelKey }) => (
+              <Button
+                key={id}
+                text={t(labelKey)}
+                variant="link"
+                onClick={() => handleSectionNavClick(id)}
+              />
+            ))}
+          </Nav>
           <ActionsWrapper>
-            <Nav>
-              {NAV_SECTIONS.map(({ id, labelKey }) => (
-                <Button
-                  key={id}
-                  text={t(labelKey)}
-                  variant="link"
-                  onClick={() => handleSectionNavClick(id)}
-                />
-              ))}
-            </Nav>
             <LanguageSwitcher />
           </ActionsWrapper>
           <ActionsWrapperMobile>
@@ -323,11 +336,13 @@ function _Header() {
           </ActionsWrapperMobile>
         </MobileMenuHeader>
         <MobileMenuContent>
-          {NAV_SECTIONS.map(({ id, labelKey }) => (
-            <MobileNavLink key={id} onClick={() => handleSectionNavClick(id)}>
-              {t(labelKey)}
-            </MobileNavLink>
-          ))}
+          <MobileNavLinksWrapper>
+            {NAV_SECTIONS.map(({ id, labelKey }) => (
+              <MobileNavLink key={id} onClick={() => handleSectionNavClick(id)}>
+                {t(labelKey)}
+              </MobileNavLink>
+            ))}
+          </MobileNavLinksWrapper>
           <MobileLanguageSwitcher>
             {LANGUAGES.map((lang) => (
               <LanguagePill
