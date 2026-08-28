@@ -8,11 +8,12 @@ const MAIN_STACK = ['.NET Core', 'React.js', 'Next.js'] as const;
 
 const AboutMeWrapper = styled.div`
   display: flex;
+  flex-direction: row-reverse;
   gap: ${({ theme }) => theme.spacing[80]};
   align-items: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 `;
 
@@ -50,6 +51,10 @@ const Description = styled.p`
   line-height: ${({ theme }) => theme.font.size.bodyLarge.lineHeight};
   color: ${({ theme }) => theme.colors.text.secondary};
   white-space: pre-line;
+
+  & span {
+    color: ${({ theme }) => theme.colors.accent.cyan};
+  }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     font-size: ${({ theme }) => theme.font.size.body.fontSize};
@@ -108,10 +113,18 @@ function _AboutMe() {
       <HeaderSection title={t('title')} subtitle={t('subtitle')} />
       <AboutMeWrapper>
         <InfoContainer>
-          <Description>{t('paragraph_1')}</Description>
-          <Description>{t('paragraph_2')}</Description>
-          <Description>{t('paragraph_3')}</Description>
-          <Description>{t('paragraph_4')}</Description>
+          <Description
+            dangerouslySetInnerHTML={{ __html: t.raw('paragraph_1') }}
+          />
+          <Description
+            dangerouslySetInnerHTML={{ __html: t.raw('paragraph_2') }}
+          />
+          <Description
+            dangerouslySetInnerHTML={{ __html: t.raw('paragraph_3') }}
+          />
+          <Description
+            dangerouslySetInnerHTML={{ __html: t.raw('paragraph_4') }}
+          />
         </InfoContainer>
         <Card>
           <CodeBlock>

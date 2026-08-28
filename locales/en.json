@@ -31,8 +31,8 @@
   "AboutMe": {
     "title": "03 / ABOUT ME",
     "subtitle": "Crafting high-performance digital architectures",
-    "paragraph_1": "Full Stack Developer with 6 years of experience in frontend and backend development, specialized in clean code and clean architecture to build scalable, easy-to-maintain products. Experienced with .NET Core, React, Next.js, TypeScript and PostgreSQL, working with microservices, REST APIs and Agile/Scrum methodologies on projects focused on user acquisition and conversion.",
-    "paragraph_2": "My approach starts with thinking before building: clean code, decoupled architectures and good practices that let the product grow without piling up technical debt. I'm involved across the whole development cycle, from new features to performance optimization, accessibility and SEO, using tools like Docker and GA4 for monitoring and continuous improvement.",
+    "paragraph_1": "<span>Full Stack Developer</span> with 6 years of experience in <span>frontend</span> and <span>backend</span> development, specialized in <span>clean code</span> and <span>clean architecture</span> to build scalable, easy-to-maintain products. <b>Experienced with .NET Core, React, Next.js, TypeScript and PostgreSQL, working with microservices, REST APIs and Agile/Scrum methodologies on projects focused on user acquisition and conversion.</b>",
+    "paragraph_2": "My approach starts with <span>thinking before building</span>: <span>clean code, decoupled architectures and good practices</span> that let the product grow without piling up technical debt. I'm involved across the whole development cycle, from new features to performance optimization, accessibility and SEO, using tools like Docker and GA4 for monitoring and continuous improvement.",
     "paragraph_3": "Currently Senior Full Stack Developer at GoStudent, building new acquisition and conversion projects while streamlining, automating and maintaining existing systems.",
     "paragraph_4": "When I'm not coding, you'll find me in the mountains, in the snow or with a book in hand.",
     "card_role_value": "Senior Fullstack",
