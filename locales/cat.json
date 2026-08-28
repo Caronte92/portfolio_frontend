@@ -31,7 +31,7 @@
   "AboutMe": {
     "title": "03 / SOBRE MI",
     "subtitle": "Dissenyant arquitectures digitals d'alt rendiment",
-    "paragraph_1": "<span>Full Stack Developer</span> amb 6 anys d'experiència en desenvolupament <span>frontend</span> i <span>backend</span>, especialitzat en <span>clean code</span> i <span>clean architecture</span> per construir productes escalables i fàcils de mantenir. <b>Experiència amb .NET Core, React, Next.js, TypeScript i PostgreSQL, treballant amb microserveis, APIs REST i metodologies Agile/Scrum en projectes orientats a captació i conversió d'usuaris.</b>",
+    "paragraph_1": "<span>Full Stack Developer</span> amb 6 anys d'experiència en desenvolupament <span>frontend</span> i <span>backend</span>, especialitzat en <span>clean code</span> i <span>clean architecture</span> per construir productes escalables i fàcils de mantenir. <b>Experiència amb .NET Core, React, Next.js, TypeScript i PostgreSQL, treballant amb microserveis, APIs REST i metodologies Agile/Scrum.</b>",
     "paragraph_2": "El meu enfocament parteix de <span>pensar abans de construir</span>: <span>codi net, arquitectures desacoblades i bones pràctiques</span> que faciliten que el producte creixi sense acumular deute tècnic. Participo en tot el cicle de desenvolupament, des de noves funcionalitats fins a optimització de rendiment, accessibilitat i SEO, fent servir eines com Docker i GA4 per a monitorització i millora contínua.",
     "paragraph_3": "Actualment Senior Full Stack Developer a GoStudent, desenvolupant nous projectes de captació i conversió, a més d'agilitzar, automatitzar i mantenir sistemes existents.",
     "paragraph_4": "Quan no estic programant, em trobaràs a la muntanya, entre neu o amb un llibre a les mans.",
