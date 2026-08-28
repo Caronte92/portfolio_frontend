@@ -138,6 +138,7 @@ function _ProjectCard({ ...props }: ProjectCardProps) {
           <Link
             text={t('link_text')}
             href={props.linkHref}
+            target="_blank"
             iconRight={<IconArrowRightAlt />}
           />
         </Wrapper>

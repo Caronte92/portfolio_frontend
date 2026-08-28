@@ -48,19 +48,18 @@ export interface LinkProps extends Omit<
   text: string;
   href: string;
   variant?: LinkVariant;
+  target?: string;
   iconRight?: React.ReactNode;
 }
 
 const _Link = ({
-  text,
-  href,
   variant = 'primary',
-  iconRight,
-  ...rest
+  target = '_self',
+  ...props
 }: LinkProps) => (
-  <StyledLink $variant={variant} href={href} {...rest}>
-    {text}
-    {iconRight}
+  <StyledLink $variant={variant} href={props.href} target={target}>
+    {props.text}
+    {props.iconRight}
   </StyledLink>
 );
 
