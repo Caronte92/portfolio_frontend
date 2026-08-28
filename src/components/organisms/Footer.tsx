@@ -10,6 +10,7 @@ const Container = styled.footer`
 `;
 
 const Text = styled.label`
+  margin: 0 auto;
   font-size: ${({ theme }) => theme.font.size.tag.fontSize};
   font-weight: ${({ theme }) => theme.font.weight.medium};
   line-height: ${({ theme }) => theme.font.size.tag.lineHeight};
@@ -24,8 +25,9 @@ const Text = styled.label`
 function _Footer() {
   return (
     <Container>
-      <Text>© 2026 Sergi Mitjavila</Text>
-      <Text>Next.js · TypeScript · Styled Components</Text>
+      <Text>
+        © 2026 by Sergi Mitjavila with Next.js · TypeScript · Styled Components
+      </Text>
     </Container>
   );
 }
