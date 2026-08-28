@@ -28,11 +28,13 @@ const ImageContainer = styled.div`
   width: 100%;
   max-width: 21.5rem;
   height: 100%;
+  padding: 1rem;
   background: oklch(79.71% 0.1339 211.53deg / 8%);
   border-radius: 0.75rem 0 0 0.75rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
     height: 180px;
+    padding: 0.5rem;
     border-radius: 0.75rem 0.75rem 0 0;
   }
 `;
@@ -41,11 +43,7 @@ const HeaderImage = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: fill;
-  border-radius: 0.75rem 0 0 0.75rem;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
+  border-radius: 0.45rem;
 `;
 
 const InfoContainer = styled.div`
